@@ -1,10 +1,6 @@
 <template>
   <div class="bg bg--first">
-    <ul>
-      <li><router-link to="/">/index</router-link></li>
-      <li><router-link to="/main">/main</router-link></li>
-      <li><router-link to="/about">/about</router-link></li>
-    </ul>
+    <vheader></vheader>
     <h1>{{ msg }}</h1>
     <h2>index page navigation</h2>
 
@@ -15,8 +11,10 @@
 </template>
 
 <script>
+import vheader from '@/components/header'
 export default {
   name: 'HelloWorld',
+  components: {vheader},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
