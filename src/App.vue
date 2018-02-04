@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <transition name="page" mode="out-in">
-      <router-view/>
+    <transition name="page">
+      <router-view style="position:absolute" />
     </transition>
   </div>
 </template>
@@ -17,34 +17,71 @@ export default {
 </script>
 
 <style>
+body, html {
+  margin: 0;
+  height: 100%;
+  position: relative;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #fff;
+  /* background: linear-gradient(0, #0d2c4a 25%, #fff) */
+
 }
 
 ul {
-  list-style: none;
+  padding: 0;
   display: inline-block;
+  list-style: none;
 }
 
 li {
   display: inline-block;
 }
 
-.page-enter-active, .page-leave-active {
-  transition: opacity 1s, transform 1s;
+h1, h2 {
+  font-weight: normal;
 }
-.page-leave-to {
-  opacity: 1;
-  transform: translateX(-100%);
+
+.page-enter, .page-enter-active, .page-enter-to {
+  position: absolute;
+  z-index: -100;
 }
 
 .page-enter {
-  transform: translateX(100%);
+  transform: translate3d(100%, 0, 0);
+}
+
+.page-enter-active {
+  transition: transform 1s;
+}
+
+.page-enter-to {
+  transform: translateX(0)
+}
+
+.page-leave-active {
+  transition: transform 1s;
+}
+
+.page-leave {
+  transform: translate3d(0, 0, 0);
+}
+.page-leave-to {
+  opacity: 1;
+  transform: translate3d(-100%, 0 , 0);
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
 }
 
 </style>
