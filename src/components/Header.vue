@@ -1,6 +1,18 @@
 <template lang="pug">
   header
     .container
+      nav.mobile-nav(:class="{down: isActive}")
+        h1 Menu
+        ul
+          li.mobile-nav__item
+            router-link(to="/") {{ $t('message.hello') }}
+          li.mobile-nav__item
+            router-link(to="/main") our partners
+          li.mobile-nav__item
+            router-link(to="/about") contact us
+      .menu(@click="toggleMenu" :class="{round: isRound}")
+        a.trigger(href="#" :class="{round: isRound, close: !isHide}") &equiv;
+        a(href="#" :class="{round: !isRound, close: isHide}") &times;
       .logo
         .logo__container
           svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.99 101.54")
@@ -17,7 +29,7 @@
             polygon(class="spatz-logo" points="48.83 88.54 36.78 88.54 36.78 91.71 40.82 91.71 40.82 101.37 44.79 101.37 44.79 91.71 46.43 91.71 48.83 89.22 48.83 88.54")
             path(class="spatz-logo" d="M9.41,94.4a21.43,21.43,0,0,0-3.8-.8c-.54-.12-1.34-.16-1.61-.74a1.09,1.09,0,0,1-.08-.93,1.74,1.74,0,0,1,.53-.67A2.76,2.76,0,0,1,6.35,91a2.68,2.68,0,0,1,1.54,1l.2.3,3.37-.19a4.33,4.33,0,0,0-1.91-2.88,5.48,5.48,0,0,0-2.49-1,9.75,9.75,0,0,0-1.12-.07,7.22,7.22,0,0,0-1,.07l.11.7a6.07,6.07,0,0,0-1.77.6L3,88.89l-.09,0A6.94,6.94,0,0,0,1.3,90.17l.52.51A6,6,0,0,0,.73,92.21L.12,91.9a1.94,1.94,0,0,0-.12.59A3.48,3.48,0,0,0,.29,93.9a3,3,0,0,0,2.35,1.76c.88.16,1.78.23,2.66.44a6.26,6.26,0,0,1,2.19.74,1.17,1.17,0,0,1,.43.89.93.93,0,0,1-.39.81,2.42,2.42,0,0,1-1.47.36,2.69,2.69,0,0,1-2.7-2l-2.79.17H.47l-.35,0a.52.52,0,0,1,0,.11,4.52,4.52,0,0,0,.53,1.55c.08.13.17.25.26.37l.55-.46a6.07,6.07,0,0,0,1.4,1.23l-.43.68c.11.07.23.12.34.18l.19.1a6.81,6.81,0,0,0,1.43.52l.19-.73a6,6,0,0,0,1.86.18l0,.7a6.53,6.53,0,0,0,2-.46,4.71,4.71,0,0,0,2.13-1.52,3.76,3.76,0,0,0,.71-3.17A3,3,0,0,0,9.41,94.4Z")
 
-      nav
+      nav.site-nav
         ul
           li
             router-link(to="/") {{ $t('message.hello') }}
@@ -36,21 +48,28 @@ export default {
   name: 'vheader',
   data: function() {
     return {
-      selected: 'en'
+      selected: 'en',
+      isActive: false,
+      isRound: false,
+      isHide: true
     }
   },
   methods: {
     changeLanguage(lang) {
       this.$locale.change(lang)
       this.selected = lang
+    },
+    toggleMenu() {
+      this.isActive = !this.isActive
+      this.isRound = !this.isRound
+      this.isHide = !this.isHide
+      console.log('click ' + this.isActive)
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-  li
-    margin-right: 64px
   a
     color: white
     text-transform: uppercase
@@ -67,9 +86,64 @@ export default {
     @media(max-width: 1370px)
       margin: 27px 20px 120px
 
+  .site-nav
+    li
+      display: inline-block;
+      margin-right: 64px
     @media(max-width: 760px)
       ul
         display: none
+
+  .menu
+    // position: fixed
+    display: none
+    z-index: 100
+    top: 25px
+    left: 25px
+    width: 75px
+    height: 75px
+    box-sizing: content-box
+    color: #fff
+    text-align: center
+    border: 3px solid #fff
+    transition: all .5s ease
+
+    @media (max-width: 760px)
+      display: block
+
+    a
+     display: block
+     text-decoration: none
+     font-family: 'Open Sans', sans-serif;
+     font-size: 48pt
+     font-weight: bold
+     color: #fff
+     margin: 0 auto
+
+    .close
+      display: none
+
+  .trigger
+    animation: menu-spin-back .4s ease-in-out
+    animation-fill-mode: forwards
+
+  .round
+    animation: menu-spin .4s ease-in-out
+    animation-fill-mode: forwards
+
+  @-webkit-keyframes menu-spin
+    50%
+      border-radius: 100%
+    100%
+      border-radius: 100%
+      transform: rotate(180deg)
+
+  @-webkit-keyframes menu-spin-back
+    50%
+      border-radius: 0
+    100%
+      border-radius: 0
+      transform: rotate(-180deg)
 
   .logo
     &__container
@@ -82,6 +156,31 @@ export default {
     display: flex
     justify-content: space-between
     align-items: center
+  .mobile-nav
+    position: absolute
+    top: -100%
+    left: 0
+    padding-bottom: 20px
+    display: none
+    width: 100%
+    height: auto
+    background: pink
+    transition: top .4s ease-in-out
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .4)
+    box-shadow: 0 0 10px 2px #000
+    &__item
+      margin-bottom: 10px
+    @media (max-width: 760px)
+      display: block
+
+    h1
+      margin: 55px 0 30px
+
+  .down
+    top: 0
+    transition: top .4s ease-in-out
+
+
   .switch-button
     &__case
       font-size: 17px

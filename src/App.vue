@@ -43,10 +43,6 @@ ul {
   list-style: none;
 }
 
-li {
-  display: inline-block;
-}
-
 h1, h2 {
   font-weight: normal;
 }

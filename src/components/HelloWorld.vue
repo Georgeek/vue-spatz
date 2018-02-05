@@ -4,15 +4,17 @@
     <h1>{{ msg }}</h1>
     <h2>index page navigation</h2>
     <h2>Ecosystem</h2>
+    <vfooter></vfooter>
   </div>
 </template>
 
 <script>
 
 import vheader from '@/components/header'
+import vfooter from '@/components/footer'
 export default {
   name: 'HelloWorld',
-  components: {vheader},
+  components: {vheader, vfooter},
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

@@ -4,14 +4,16 @@
     <div class="container pink">
       test
     </div>
+    <vfooter></vfooter>
   </section>
 </template>
 
 <script>
 import vheader from '@/components/header'
+import vfooter from '@/components/footer'
 export default {
   name: 'vmain',
-  components: {vheader}
+  components: {vheader, vfooter}
 }
 </script>
 
