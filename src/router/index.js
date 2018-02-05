@@ -4,10 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import main from '@/pages/main'
 import about from '@/pages/about'
 
-// import VueRouterTransition from 'vue-router-transition'
-
 Vue.use(Router)
-// Vue.use(VueRouterTransition)
 
 export default new Router({
   routes: [

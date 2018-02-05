@@ -20,16 +20,31 @@
       nav
         ul
           li
-            router-link(to="/") about spatz
+            router-link(to="/") {{ $t('message.hello') }}
           li
             router-link(to="/main") our partners
           li
             router-link(to="/about") contact us
+        .switch-button
+          button.switch-button__case(:class="{active:selected == 'en'}" @click="changeLanguage('en')") en
+          button.switch-button__case(:class="{active:selected == 'ru'}" @click="changeLanguage('ru')") ru
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
-  name: 'vheader'
+  name: 'vheader',
+  data: function() {
+    return {
+      selected: 'en'
+    }
+  },
+  methods: {
+    changeLanguage(lang) {
+      this.$locale.change(lang)
+      this.selected = lang
+    }
+  }
 }
 </script>
 
@@ -45,8 +60,16 @@ export default {
   .container
     margin: 27px auto 120px
     display: flex
+    justify-content: space-between
     align-items: center
     max-width: 1366px
+
+    @media(max-width: 1370px)
+      margin: 27px 20px 120px
+
+    @media(max-width: 760px)
+      ul
+        display: none
 
   .logo
     &__container
@@ -55,4 +78,21 @@ export default {
 
     .spatz-logo
       fill: white;
+  nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+  .switch-button
+    &__case
+      font-size: 17px
+      color: white
+      text-transform: uppercase
+      cursor: pointer
+      background-color: transparent
+      border: none
+      outline: none
+      &.active
+        font-weight: bold
+        border: none
+
 </style>

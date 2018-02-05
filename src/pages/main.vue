@@ -1,10 +1,6 @@
 <template>
   <section class="bg bg--second">
-    <ul>
-      <li><router-link to="/">/index</router-link></li>
-      <li><router-link to="/main">/main</router-link></li>
-      <li><router-link to="/about">/about</router-link></li>
-    </ul>
+    <vheader></vheader>
     <div class="container pink">
       test
     </div>
@@ -12,8 +8,10 @@
 </template>
 
 <script>
+import vheader from '@/components/header'
 export default {
-  name: 'vmain'
+  name: 'vmain',
+  components: {vheader}
 }
 </script>
 
