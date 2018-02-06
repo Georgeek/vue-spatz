@@ -19,5 +19,7 @@ export default {
     &__item
       margin: 0 auto
     p
+      font-size: 8pt
+      text-align: center
       text-transform: uppercase
 </style>

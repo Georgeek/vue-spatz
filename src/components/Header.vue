@@ -1,6 +1,6 @@
 <template lang="pug">
-  header
-    .container
+  header.header
+    .header__wrap
       nav.mobile-nav(:class="{down: isActive}")
         h1 Menu
         ul
@@ -76,15 +76,15 @@ export default {
     text-decoration: none
     font-weight: bold
 
-  .container
-    margin: 27px auto 120px
-    display: flex
-    justify-content: space-between
-    align-items: center
-    max-width: 1366px
+  .header
+    &__wrap
+      margin: 27px auto 120px
+      display: flex
+      justify-content: space-between
+      align-items: center
 
-    @media(max-width: 1370px)
-      margin: 27px 20px 120px
+      @media(max-width: 1370px)
+        margin: 27px 20px 120px
 
   .site-nav
     li
@@ -164,10 +164,11 @@ export default {
     display: none
     width: 100%
     height: auto
-    background: pink
-    transition: top .4s ease-in-out
+    text-align: center
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .4)
+    background: pink
     box-shadow: 0 0 10px 2px #000
+    transition: top .4s ease-in-out
     &__item
       margin-bottom: 10px
     @media (max-width: 760px)

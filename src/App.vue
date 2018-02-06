@@ -30,10 +30,7 @@ body, html {
   font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #fff;
-  /* background: linear-gradient(0, #0d2c4a 25%, #fff) */
-
 }
 
 ul {
