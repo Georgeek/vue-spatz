@@ -19,9 +19,25 @@
               <p class="description description__text">For any further information about Spatz, please fill out the form below. One of our representatives will contact you shortly.</p>
             </div>
 
-            <div class="content__row">
-              <div class="content__left">
-                <!-- Form -->
+            <div class="content__row content--reverse">
+              <div class="content__form">
+                <div class="google-keep google-keep-bg">
+                  <div class="google-keep__block">
+                    <form action="" method="get" id="feedbackform">
+                      <div class="google-keep__input-cont">
+                        <input aria-label="name" autocomplete="off" placeholder="name" type="text" class="google-keep__input">
+                      </div>
+                      <div class="google-keep__input-cont">
+                        <input aria-label="email address" autocomplete="off" placeholder="email address" type="text" class="google-keep__input">
+                      </div>
+                      <div class="google-keep__input-cont">
+                        <textarea aria-label="message" autocomplete="off" placeholder="message" type="text" class="google-keep__input" ></textarea>
+                      </div>
+                      <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
+                    </form>
+                  </div>
+
+                </div>
               </div>
               <div class="content__right">
                 <div class="contact">
@@ -42,6 +58,10 @@
                 </div>
               </div>
 
+            </div>
+            <div class="content__row">
+              <input class="form__submit-btn" type="submit" form="feedbackform" value="Send">
+              <!-- <label class="form__submit-btn" for="submit-form" tabindex="0">send</label> -->
             </div>
 
           </div>
@@ -71,5 +91,61 @@ export default {
     background-repeat: no-repeat
     background-position: center
     background-size: cover
+
+.google-keep
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  flex: 1 1 100%
+  vertical-align: middle
+
+  &__block
+    padding-right: 16px
+    width: 100%
+    max-width: 100%
+    flex: 1 1 auto
+
+    form
+      position: relative
+      margin-right: 0
+      margin-left: 0
+      max-width: 720px
+
+  &__input-cont
+    margin-right: 50px
+    margin-top: 20px
+    padding: 0
+    overflow: hidden
+    background-color: rgba(255, 255, 255, 1)
+    border: 1px solid rgba(0, 0, 0, 0)
+    border-radius: 4px
+    transition: background 100ms ease, width 100ms ease
+
+    input, textarea
+      padding: 13px 25px
+      box-sizing: border-box
+      width: 100%
+      color: rgba(0, 0, 0, .8)
+      background: transparent
+      border: none
+      outline: none
+
+    textarea
+      height: 105px
+      resize: vertical
+      overflow-x: hidden
+
+      &::placeholder
+        color: rgba(0, 0, 0, .8)
+.form
+  &__submit-btn
+    margin-top: 20px
+    padding: 13px 25px
+    max-width: 100px
+    color: #fff
+    background: #0086bc
+    border: none
+    border-radius: 4px
+
 
 </style>

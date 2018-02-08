@@ -73,7 +73,6 @@ export default {
       this.isActive = !this.isActive
       this.isRound = !this.isRound
       this.isHide = !this.isHide
-      console.log('click ' + this.isActive)
     }
   }
 }
@@ -88,18 +87,18 @@ export default {
 
   .header
     &__wrap
-      margin: 27px auto 120px
+      margin: 27px 20px 40px
       display: flex
       justify-content: space-between
       align-items: center
-
-      @media(max-width: 1370px)
-        margin: 27px 20px 40px
 
   .site-nav
     li
       display: inline-block;
       margin-right: 64px
+    .router-link-active
+      color: #0086BC
+      text-shadow: 0 0 2px rgba(0, 134, 188, .5)
     @media(max-width: 760px)
       ul
         display: none
@@ -181,7 +180,7 @@ export default {
     height: auto
     text-align: center
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .4)
-    background: pink
+    background: rgba(13, 44, 74, .99)
     box-shadow: 0 0 10px 2px #000
     transition: top .4s ease-in-out
     &__item

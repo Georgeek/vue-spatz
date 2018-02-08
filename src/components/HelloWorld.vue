@@ -8,7 +8,7 @@
         <!-- Title -->
         <div class="page-title">
           <div class="page-title__wrap">
-            <h1 class="title">This your slogan here</h1>
+            <h1 class="title title--index">This your slogan here</h1>
           </div>
         </div>
 
@@ -96,10 +96,12 @@ export default {
     padding: 0 10px
 
 .page-content
+  margin-top: -70px
   display: flex
   flex-direction: column
   justify-content: space-between
-
+  @media (max-width: 640px), (max-height: 640px)
+    margin-top: 0
 .page-title
   &__wrap
     margin-bottom: 25px
@@ -109,6 +111,8 @@ export default {
   margin: 0
   font-size: 38px
   font-weight: bold
+  &--index
+    margin-left: 50px
 .content
   &__row
     margin-left: 30px
@@ -119,34 +123,59 @@ export default {
     @media (max-width: 700px)
       flex-direction: column
   &__left
+    position: relative
+    width: 100%
     max-width: 462px
     @media (max-width: 780px)
       max-width: 400px
+    @media (max-width: 700px)
+      height: 250px
+      max-width: none
     @media (max-width: 640px), (max-height: 640px)
       max-width: none
+  &--transition
+    position: absolute
+  .slide-leave-active,
+  .slide-enter-active
+    transition: 1s
+  .slide-enter
+    transform: translate(100%, 0)
+  .slide-leave-to
+    transform: translate(-100%, 0)
   &__right
     max-width: 273px
     align-self: flex-end
-    @media (max-width: 640px), (max-height: 640px)
+    @media (max-width: 700px), (max-height: 640px)
+      margin: 20px 20px 0 0
       max-width: none
+      align-self: auto
+  &__form
+    flex: 1
   &__title
     margin: 0
     font-size: 22px
     text-transform: uppercase
     color: #0086bc
+  &--reverse
+    @media (max-width: 700px)
+      flex-direction: column-reverse
 .contact
   &__wrap
     max-width: 225px
     width: 100%
-    @media (max-width: 640px), (max-height: 640px)
+    @media (max-width: 700px), (max-height: 640px)
       max-width: none
       display: flex
       flex-direction: row
       justify-content: space-between
   &__info
     margin-bottom: 40px
-    @media (max-width: 640px), (max-height: 640px)
+    @media (max-width: 700px), (max-height: 640px)
       margin-bottom: auto
+      width: 45%
+  &__address
+    @media (max-width: 700px), (max-height: 640px)
+      width: 45%
   &__item
     margin-bottom: 5px
     font-size: 8pt

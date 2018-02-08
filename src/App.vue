@@ -18,6 +18,10 @@ export default {
 </script>
 
 <style>
+* {
+  transition: all .3s ease;
+}
+
 body, html {
   margin: 0;
   height: 100%;

@@ -6,9 +6,9 @@
       <div class="aside">
         <div class="aside__wrap">
           <div class="aside__navbar">
-            <a class="aside__btn icobtn"><img src="../assets/img/icobtn1.png" alt="icon button 1" srcset=""></a>
-            <a class="aside__btn icobtn"><img src="../assets/img/icobtn2.png" alt="icon button 1" srcset=""></a>
-            <a class="aside__btn icobtn"><img src="../assets/img/icobtn3.png" alt="icon button 1" srcset=""></a>
+            <div class="aside__btn icobtn" @click="showText('case')"><img src="../assets/img/icobtn1.png" alt="icon button 1" srcset=""></div>
+            <div class="aside__btn icobtn" @click="showText('radar')"><img src="../assets/img/icobtn2.png" alt="icon button 1" srcset=""></div>
+            <div class="aside__btn icobtn" @click="showText('settings')"><img src="../assets/img/icobtn3.png" alt="icon button 1" srcset=""></div>
           </div>
         </div>
       </div>
@@ -31,10 +31,24 @@
               <h4 class="content__title">spatz</h4>
             </div>
             <div class="content__row">
-              <div class="content__left">
-                <p class="description description__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
-                <p class="description description__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
-              </div>
+               <div class="content__left">
+                <transition-group name="textslide">
+                  <div class="content__textblock  content--transition" v-if="docState === 'case'" key="case">
+                    <p class="description description__text">111111111111111 Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                    <p class="description description__text"> 111111111111111Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                  </div>
+                  <div class="content__textblock  content--transition" v-if="docState === 'radar'" key="radar">
+                    <p class="description description__text">2222222222222222 Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                    <p class="description description__text"> 2222222222222222Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                  </div>
+                  <div class="content__textblock  content--transition" v-if="docState === 'settings'" key="settings">
+                    <p class="description description__text">333333333333333 Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                    <p class="description description__text"> 333333333333333Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                  </div>
+
+                </transition-group>
+               </div>
+
               <div class="content__right">
                 <div class="contact">
                   <div class="contact__wrap">
@@ -70,7 +84,17 @@ import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 export default {
   name: 'vmain',
-  components: {vheader, vfooter}
+  components: {vheader, vfooter},
+  data() {
+    return {
+      docState: 'case'
+    }
+  },
+  methods: {
+    showText(key) {
+      this.docState = key;
+    }
+  }
 }
 </script>
 
@@ -114,4 +138,11 @@ export default {
       width: 50px
       height: 50px
 
+.textslide-enter-active
+  transition: all 1.8s ease
+.textslide-leave-active
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0)
+.textslide-enter, .textslide-leave-to
+  transform: translateX(50px)
+  opacity: 0
 </style>
