@@ -3,7 +3,18 @@
     <div class="container">
       <vheader></vheader>
 
+      <div class="aside">
+        <div class="aside__wrap">
+          <div class="aside__navbar">
+            <a class="aside__btn icobtn"><img src="../assets/img/icobtn1.png" alt="icon button 1" srcset=""></a>
+            <a class="aside__btn icobtn"><img src="../assets/img/icobtn2.png" alt="icon button 1" srcset=""></a>
+            <a class="aside__btn icobtn"><img src="../assets/img/icobtn3.png" alt="icon button 1" srcset=""></a>
+          </div>
+        </div>
+      </div>
+
       <div class="page-content">
+
 
         <!-- Title -->
         <div class="page-title">
@@ -47,8 +58,6 @@
           </div>
         </div>
 
-
-
       </div>
 
       <vfooter></vfooter>
@@ -74,5 +83,35 @@ export default {
     background-repeat: no-repeat
     background-position: center
     background-size: cover
+
+.aside
+  position: absolute
+  top: 33%
+  left: 50px
+  @media (max-width: 980px)
+    position: relative
+    top: unset
+    left: unset
+  &__wrap
+    @media (max-width: 640px), (max-height: 640px)
+      margin-bottom: 20px
+  &__navbar
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 265px
+    @media (max-width: 980px)
+      flex-direction: row
+      justify-content: space-around
+      height: auto
+  &__btn
+    width: 50px
+    height: 50px
+    text-decoration: none
+    color: #fff
+
+    img
+      width: 50px
+      height: 50px
 
 </style>

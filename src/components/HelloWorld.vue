@@ -69,6 +69,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass">
 .bg
+  @media (max-width: 640px), (max-height: 640px)
+    width
   &--first
     background: #0d2c4a
     background-image: url(../assets/img/bgpage1.png)
@@ -78,6 +80,7 @@ export default {
     background-size: cover
 
 .container
+  position: relative
   margin: 0 auto
   padding: 0 183px 0 287px
   max-width: 1366px
@@ -93,8 +96,6 @@ export default {
     padding: 0 10px
 
 .page-content
-  max-height: 320px
-  height: 100%
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -115,12 +116,19 @@ export default {
     flex-direction: row
     justify-content: space-between
 
-    @media (max-width: 980px)
+    @media (max-width: 700px)
       flex-direction: column
   &__left
     max-width: 462px
+    @media (max-width: 780px)
+      max-width: 400px
+    @media (max-width: 640px), (max-height: 640px)
+      max-width: none
   &__right
     max-width: 273px
+    align-self: flex-end
+    @media (max-width: 640px), (max-height: 640px)
+      max-width: none
   &__title
     margin: 0
     font-size: 22px
@@ -130,8 +138,15 @@ export default {
   &__wrap
     max-width: 225px
     width: 100%
+    @media (max-width: 640px), (max-height: 640px)
+      max-width: none
+      display: flex
+      flex-direction: row
+      justify-content: space-between
   &__info
     margin-bottom: 40px
+    @media (max-width: 640px), (max-height: 640px)
+      margin-bottom: auto
   &__item
     margin-bottom: 5px
     font-size: 8pt
@@ -141,7 +156,10 @@ export default {
 
 .description
   &__text
-    font-size: 12pt
+    font-size: 14px
     margin: 18px 0
+
+    &:last-child
+      margin: 18px 0 0 0
 
 </style>

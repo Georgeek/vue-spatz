@@ -1,5 +1,5 @@
 <template>
-  <section class="bg bg--third">
+  <section class="bg bg--fourth">
     <div class="container">
       <vheader></vheader>
 
@@ -8,7 +8,7 @@
         <!-- Title -->
         <div class="page-title">
           <div class="page-title__wrap">
-            <h1 class="title">This your slogan here</h1>
+            <h1 class="title">Get in touch with us</h1>
           </div>
         </div>
 
@@ -16,7 +16,7 @@
         <div class="content">
           <div class="content__wrap">
             <div class="content__row">
-              <p class="description description__text">Quis debitis ex autem excepturi, magnam soluta architecto unde libero minima consectetur.</p>
+              <p class="description description__text">For any further information about Spatz, please fill out the form below. One of our representatives will contact you shortly.</p>
             </div>
 
             <div class="content__row">
@@ -58,16 +58,16 @@
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 export default {
-  name: 'vabout',
+  name: 'vcontact',
   components: {vheader, vfooter}
 }
 </script>
 
 <style lang="sass">
 .bg
-  &--third
+  &--fourth
     background-color: #77bfa1
-    background: linear-gradient(0, rgba(13, 44, 74, .99) 30%, rgba(255, 255,255, 0)), url('../assets/img/bgpage3.png')
+    background: linear-gradient(0, rgba(13, 44, 74, .99) 30%, rgba(255, 255,255, 0)), url('../assets/img/bgpage4.png')
     background-repeat: no-repeat
     background-position: center
     background-size: cover

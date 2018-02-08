@@ -10,9 +10,10 @@
 
 import vmain from '@/pages/main'
 import vabout from '@/pages/about'
+import vcontact from '@/pages/contact'
 export default {
   name: 'App',
-  components: { vmain, vabout }
+  components: { vmain, vabout, vcontact }
 }
 </script>
 
@@ -74,8 +75,18 @@ h1, h2 {
 }
 
 .bg {
-  height: 100%;
   width: 100%;
+  height: 100%;
+}
+
+@media (max-height: 640px), (max-device-width: 667px) {
+  #app {
+    overflow: auto;
+  }
+  .bg {
+    width: auto;
+    height: auto;
+  }
 }
 
 </style>
