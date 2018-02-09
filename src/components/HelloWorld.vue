@@ -1,5 +1,8 @@
 <template>
-  <div class="bg bg--first">
+  <progressive-background
+            src="http://hdwarena.com/wp-content/uploads/2017/04/Bridge-Wallpaper-1867x1080.jpg"
+            placeholder="https://unsplash.it/1920/1080?image=10"
+            :blur="30">
     <div class="container">
       <vheader></vheader>
 
@@ -48,7 +51,7 @@
       <vfooter></vfooter>
     </div>
 
-  </div>
+  </progressive-background>
 </template>
 
 <script>
@@ -72,9 +75,9 @@ export default {
   @media (max-width: 640px), (max-height: 640px)
     width
   &--first
-    background: #0d2c4a
-    background-image: url(../assets/img/bgpage1.png)
-    background: linear-gradient(0, rgba(13, 44, 74, .99) 35%, rgba(0, 0, 0, .1)), url('../assets/img/bgpage1.png')
+    // background: #0d2c4a
+    // background-image: url(../assets/img/bgpage1.png)
+    // background: linear-gradient(0, rgba(13, 44, 74, .99) 35%, rgba(0, 0, 0, .1)), url('../assets/img/bgpage1.png')
     background-repeat: no-repeat
     background-position: center
     background-size: cover
@@ -84,7 +87,8 @@ export default {
   margin: 0 auto
   padding: 0 183px 0 287px
   max-width: 1366px
-  height: 100%
+  // height: 100% WAS
+  height: 100vh
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -159,6 +163,9 @@ export default {
   &--reverse
     @media (max-width: 700px)
       flex-direction: column-reverse
+  &__carousel
+    margin-top: 20px
+    height: 300px
 .contact
   &__wrap
     max-width: 225px

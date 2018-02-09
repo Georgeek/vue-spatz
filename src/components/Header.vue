@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
   a
     color: white
     text-transform: uppercase

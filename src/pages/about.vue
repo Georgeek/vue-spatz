@@ -1,5 +1,8 @@
 <template>
-  <section class="bg bg--third">
+  <progressive-background
+            src="https://unsplash.it/5000/4000?image=10"
+            placeholder="https://unsplash.it/20/20?image=10"
+            :blur="30">
     <div class="container">
       <vheader></vheader>
 
@@ -20,8 +23,17 @@
             </div>
 
             <div class="content__row">
-              <div class="content__left">
+              <div class="content__left content__carousel">
                 <!-- Form -->
+                <div>
+                  <carousel paginationActiveColor="#0086BC">
+                    <slide>Text 1 Text 2</slide>
+                    <slide>Text 1 Text 2</slide>
+                    <slide>Text 1 Text 2</slide>
+                    <slide>Text 1 Text 2</slide>
+                  </carousel>
+                </div>
+
               </div>
               <div class="content__right">
                 <div class="contact">
@@ -51,25 +63,29 @@
 
       <vfooter></vfooter>
     </div>
-  </section>
+  </progressive-background>
 </template>
 
 <script>
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
+import { Carousel, Slide } from 'vue-carousel'
 export default {
   name: 'vabout',
-  components: {vheader, vfooter}
+  components: {vheader, vfooter, Carousel, Slide}
 }
 </script>
 
 <style lang="sass">
 .bg
   &--third
-    background-color: #77bfa1
-    background: linear-gradient(0, rgba(13, 44, 74, .99) 30%, rgba(255, 255,255, 0)), url('../assets/img/bgpage3.png')
+    // background-color: #77bfa1
+    // background: linear-gradient(0, rgba(13, 44, 74, .99) 30%, rgba(255, 255,255, 0)), url('../assets/img/bgpage3.png')
     background-repeat: no-repeat
     background-position: center
     background-size: cover
+
+.VueCarousel-dot--active .VueCarousel-dot-inner
+  background: #0086BC
 
 </style>

@@ -8,6 +8,7 @@ import contact from '@/pages/contact'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

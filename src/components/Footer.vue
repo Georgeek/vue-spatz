@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
   .footer
     &__wrap
       margin-bottom: 42px

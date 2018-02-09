@@ -4,10 +4,14 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import App from './App'
 import router from './router'
+import VueProgressiveImage from 'vue-progressive-image'
+import VueCarousel from 'vue-carousel'
 
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)
+Vue.use(VueProgressiveImage)
+Vue.use(VueCarousel)
 
 const messages = {
   en: {

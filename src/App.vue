@@ -17,80 +17,65 @@ export default {
 }
 </script>
 
-<style>
-* {
-  transition: all .3s ease;
-}
+<style lang="sass">
+*
+  transition: all .3s ease
 
-body, html {
-  margin: 0;
-  height: 100%;
-  position: relative;
-}
+body, html
+  position: relative
+  margin: 0
+  height: 100%
 
-#app {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #fff;
-}
+#app
+  position: relative
+  overflow: hidden
+  height: 100%
+  font-family: Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: #fff
 
-ul {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  list-style: none;
-}
+ul
+  margin: 0
+  padding: 0
+  display: inline-block
+  list-style: none
 
-h1, h2 {
-  font-weight: normal;
-}
+h1, h2
+  font-weight: normal
 
-.page-enter, .page-enter-active, .page-enter-to {
-  position: absolute;
-  z-index: -100;
-}
+.page-enter, .page-enter-active, .page-enter-to
+  position: absolute
+  z-index: -100
 
-.page-enter {
-  transform: translate3d(100%, 0, 0);
-}
+.page-enter
+  transform: translate3d(100%, 0, 0)
 
-.page-enter-active {
-  transition: transform 1s;
-}
+.page-enter-active
+  transition: transform 1s
 
-.page-enter-to {
+.page-enter-to
   transform: translateX(0)
-}
 
-.page-leave-active {
-  transition: transform 1s;
-}
+.page-leave-active
+  transition: transform 1s
 
-.page-leave {
-  transform: translate3d(0, 0, 0);
-}
-.page-leave-to {
-  opacity: 1;
-  transform: translate3d(-100%, 0 , 0);
-}
+.page-leave
+  transform: translate3d(0, 0, 0)
 
-.bg {
-  width: 100%;
-  height: 100%;
-}
+.page-leave-to
+  opacity: 1
+  transform: translate3d(-100%, 0 , 0)
 
-@media (max-height: 640px), (max-device-width: 667px) {
-  #app {
-    overflow: auto;
-  }
-  .bg {
-    width: auto;
-    height: auto;
-  }
-}
+.bg
+  width: 100%
+  height: 100%
+
+@media (max-height: 640px), (max-device-width: 667px)
+  #app
+    overflow: auto
+  .bg
+    width: auto
+    height: auto
 
 </style>
