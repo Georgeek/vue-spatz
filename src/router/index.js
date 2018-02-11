@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import main from '@/pages/main'
+import main from '@/components/main'
+import partners from '@/pages/partners'
 import about from '@/pages/about'
 import contact from '@/pages/contact'
 
@@ -12,11 +12,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/main',
       name: 'main',
       component: main
     },
@@ -24,6 +19,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: about
+    },
+    {
+      path: '/partners',
+      name: 'partners',
+      component: partners
     },
     {
       path: '/contact',

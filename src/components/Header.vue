@@ -5,11 +5,13 @@
         h1 Menu
         ul
           li.mobile-nav__item
-            router-link(to="/") {{ $t('message.hello') }}
+            router-link(to="/") Главная
           li.mobile-nav__item
-            router-link(to="/main") our partners
+            router-link(to="/about") {{ $t('message.hello') }}
           li.mobile-nav__item
-            router-link(to="/about") contact us
+            router-link(to="/partners") our partners
+          li.mobile-nav__item
+            router-link(to="/contact") contact us
       .menu(@click="toggleMenu" :class="{round: isRound}")
         a.trigger(href="#" :class="{round: isRound, close: !isHide}")
           svg(version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve")
@@ -42,9 +44,9 @@
       nav.site-nav
         ul
           li
-            router-link(to="/main") {{ $t('message.hello') }}
+            router-link(to="/about") {{ $t('message.hello') }}
           li
-            router-link(to="/about") our partners
+            router-link(to="/partners") our partners
           li
             router-link(to="/contact") contact us
         .switch-button

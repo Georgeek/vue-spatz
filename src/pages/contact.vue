@@ -1,77 +1,82 @@
 <template>
-  <section class="bg bg--fourth">
-    <div class="container">
-      <vheader></vheader>
+  <progressive-background
+              src="http://spatz.web-y.ru/images/img4.jpg"
+              placeholder="http://spatz.web-y.ru/images/img4.jpg"
+              :blur="30">
+    <div class="bg">
+      <div class="container">
+        <vheader></vheader>
 
-      <div class="page-content">
+        <div class="page-content">
 
-        <!-- Title -->
-        <div class="page-title">
-          <div class="page-title__wrap">
-            <h1 class="title">Get in touch with us</h1>
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div class="content">
-          <div class="content__wrap">
-            <div class="content__row">
-              <p class="description description__text">For any further information about Spatz, please fill out the form below. One of our representatives will contact you shortly.</p>
+          <!-- Title -->
+          <div class="page-title">
+            <div class="page-title__wrap">
+              <h1 class="title">Get in touch with us</h1>
             </div>
+          </div>
 
-            <div class="content__row content--reverse">
-              <div class="content__form">
-                <div class="google-keep google-keep-bg">
-                  <div class="google-keep__block">
-                    <form action="" method="get" id="feedbackform">
-                      <div class="google-keep__input-cont">
-                        <input aria-label="name" autocomplete="off" placeholder="name" type="text" class="google-keep__input">
-                      </div>
-                      <div class="google-keep__input-cont">
-                        <input aria-label="email address" autocomplete="off" placeholder="email address" type="text" class="google-keep__input">
-                      </div>
-                      <div class="google-keep__input-cont">
-                        <textarea aria-label="message" autocomplete="off" placeholder="message" type="text" class="google-keep__input" ></textarea>
-                      </div>
-                      <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
-                    </form>
-                  </div>
-
-                </div>
-              </div>
-              <div class="content__right">
-                <div class="contact">
-                  <div class="contact__wrap">
-                    <div class="contact__info">
-                      <h6 class="contact__title">Contact info</h6>
-                      <ul>
-                        <li class="contact__item">Phone: +7-926-977-22-57</li>
-                        <li class="contact__item">+7-495-643-10-16 доб 15690</li>
-                        <li class="contact__item">Email: spatz.msk@gmail.com</li>
-                      </ul>
-                    </div>
-                    <div class="contact__address">
-                      <h6 class="contact__title">Corporate office</h6>
-                      <p class="contact__item">119180, г.Москва, ул. Малая Полянка, д.2</p>
-                    </div>
-                  </div>
-                </div>
+          <!-- Content -->
+          <div class="content">
+            <div class="content__wrap">
+              <div class="content__row">
+                <p class="description description__text">For any further information about Spatz, please fill out the form below. One of our representatives will contact you shortly.</p>
               </div>
 
-            </div>
-            <div class="content__row">
-              <input class="form__submit-btn" type="submit" form="feedbackform" value="Send">
-              <!-- <label class="form__submit-btn" for="submit-form" tabindex="0">send</label> -->
-            </div>
+              <div class="content__row content--reverse">
+                <div class="content__form">
+                  <div class="google-keep google-keep-bg">
+                    <div class="google-keep__block">
+                      <form action="" method="get" id="feedbackform">
+                        <div class="google-keep__input-cont">
+                          <input aria-label="name" autocomplete="off" placeholder="name" type="text" class="google-keep__input">
+                        </div>
+                        <div class="google-keep__input-cont">
+                          <input aria-label="email address" autocomplete="off" placeholder="email address" type="text" class="google-keep__input">
+                        </div>
+                        <div class="google-keep__input-cont">
+                          <textarea aria-label="message" autocomplete="off" placeholder="message" type="text" class="google-keep__input" ></textarea>
+                        </div>
+                        <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
+                      </form>
+                    </div>
 
+                  </div>
+                </div>
+                <div class="content__right">
+                  <div class="contact">
+                    <div class="contact__wrap">
+                      <div class="contact__info">
+                        <h6 class="contact__title">Contact info</h6>
+                        <ul>
+                          <li class="contact__item">Phone: +7-926-977-22-57</li>
+                          <li class="contact__item">+7-495-643-10-16 доб 15690</li>
+                          <li class="contact__item">Email: spatz.msk@gmail.com</li>
+                        </ul>
+                      </div>
+                      <div class="contact__address">
+                        <h6 class="contact__title">Corporate office</h6>
+                        <p class="contact__item">119180, г.Москва, ул. Малая Полянка, д.2</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="content__row">
+                <input class="form__submit-btn" type="submit" form="feedbackform" value="Send">
+                <!-- <label class="form__submit-btn" for="submit-form" tabindex="0">send</label> -->
+              </div>
+
+            </div>
           </div>
+
         </div>
 
+        <vfooter></vfooter>
       </div>
-
-      <vfooter></vfooter>
     </div>
-  </section>
+  </progressive-background>
 </template>
 
 <script>

@@ -1,19 +1,20 @@
 <template>
   <div id="app">
     <transition name="page">
-      <router-view style="position:absolute" />
+      <router-view style="position: absolute;" />
     </transition>
   </div>
 </template>
 
 <script>
 
-import vmain from '@/pages/main'
+import vmain from '@/components/main'
 import vabout from '@/pages/about'
+import vpartners from '@/pages/partners'
 import vcontact from '@/pages/contact'
 export default {
   name: 'App',
-  components: { vmain, vabout, vcontact }
+  components: { vmain, vabout, vcontact, vpartners }
 }
 </script>
 
@@ -34,6 +35,9 @@ body, html
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: #fff
+
+  @media (max-height: 640px), (max-device-width: 667px)
+    overflow: auto
 
 ul
   margin: 0
@@ -70,12 +74,24 @@ h1, h2
 .bg
   width: 100%
   height: 100%
-
-@media (max-height: 640px), (max-device-width: 667px)
-  #app
-    overflow: auto
-  .bg
+  background: linear-gradient(0, rgba(13, 44, 74, .99) 35%, rgba(0, 0, 0, .1))
+  @media (max-height: 640px), (max-device-width: 667px)
     width: auto
     height: auto
 
+.container
+  position: relative
+  margin: 0 auto
+  padding: 0 183px 0 287px
+  max-width: 1366px
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  box-sizing: border-box
+
+  @media (max-width: 1266px)
+    padding: 0 91px 0 143px
+  @media (max-width: 980px)
+    padding: 0 10px
 </style>
