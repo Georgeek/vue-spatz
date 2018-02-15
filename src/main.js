@@ -7,36 +7,18 @@ import router from './router'
 import VueProgressiveImage from 'vue-progressive-image'
 import VueCarousel from 'vue-carousel'
 
-Vue.config.productionTip = false
+import Header from '@/components/header'
+// import dataspatz from './lang/lang'
 
 Vue.use(VueI18n)
 Vue.use(VueProgressiveImage)
 Vue.use(VueCarousel)
 
-const messages = {
-  en: {
-    message: {
-      hello: 'about spatz'
-    }
-  },
-  ru: {
-    message: {
-      hello: 'О компании'
-    }
-  }
-}
-
-const i18n = new VueI18n({
-  locale: 'en',
-  messages
-})
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  i18n,
   router,
-  components: { App },
+  components: { App, Header },
   template: '<App/>'
 })
 

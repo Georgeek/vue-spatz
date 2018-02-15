@@ -7,9 +7,9 @@
           li.mobile-nav__item
             router-link(to="/") Главная
           li.mobile-nav__item
-            router-link(to="/about") {{ $t('message.hello') }}
+            router-link(to="/about")
           li.mobile-nav__item
-            router-link(to="/partners") our partners
+            router-link(to="/partners")
           li.mobile-nav__item
             router-link(to="/contact") contact us
       .menu(@click="toggleMenu" :class="{round: isRound}")
@@ -43,38 +43,53 @@
 
       nav.site-nav
         ul
-          li
-            router-link(to="/about") {{ $t('message.hello') }}
-          li
-            router-link(to="/partners") our partners
-          li
-            router-link(to="/contact") contact us
+          li(v-for="message in messages")
+            router-link(to="message.url") {{ message.name }}
+          //- li
+          //-   router-link(to="/partners") {{ messages[1].name }}
+          //- li
+          //-   router-link(to="/contact") {{ messages[2].name }}
         .switch-button
-          button.switch-button__case(:class="{active:selected == 'en'}" @click="changeLanguage('en')") en
-          button.switch-button__case(:class="{active:selected == 'ru'}" @click="changeLanguage('ru')") ru
+          button.switch-button__case(:class="{active:selected == 'en'}" @click="requestNavbar('en')") en
+          button.switch-button__case(:class="{active:selected == 'ru'}" @click="requestNavbar('ru')") ru
 </template>
 
 <script>
 import Vue from 'vue'
 export default {
   name: 'vheader',
-  data: function() {
+  data() {
     return {
-      selected: 'en',
+      selected: 'ru',
       isActive: false,
       isRound: false,
-      isHide: true
+      isHide: true,
+      url: 'http://spatz.web-y.ru/api/v1/',
+      messages: 'text'
     }
   },
+  created() {
+    this.requestNavbar(this.selected);
+  },
   methods: {
-    changeLanguage(lang) {
-      this.$locale.change(lang)
-      this.selected = lang
-    },
     toggleMenu() {
       this.isActive = !this.isActive
       this.isRound = !this.isRound
       this.isHide = !this.isHide
+    },
+    requestNavbar(lang) {
+      this.selected = lang;
+      return fetch(`http://spatz.web-y.ru/api/v1/menu?lng=${lang}`, {
+        method: 'GET',
+        body: null,
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then((res) => res.json())
+        .then((resText) => {
+          this.messages = resText;
+        })
+        .catch((error) => console.log(error));
     }
   }
 }
