@@ -16,45 +16,7 @@ import vcontact from '@/pages/contact'
 // import messages from './lang/lang'
 export default {
   name: 'App',
-  components: { vmain, vabout, vcontact, vpartners },
-  data() {
-    return {
-      dataspatz: null,
-      messages: null
-    }
-  },
-  i18n: {
-    locale: 'en',
-    messages: this.messages
-  },
-  created() {
-    // this.requestNavbar().then(() =>
-    //   console.log(this.messages));
-  },
-  mounted() {
-    // this.consLog()
-  },
-  methods: {
-    requestNavbar() {
-      let self = this;
-      return fetch('http://spatz.web-y.ru/api/v1/', {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.messages = resText;
-          console.log(`Запустился beforeMount App: ${this.messages.en.menu[0].name}`);
-          return this.messages;
-        })
-        .catch((error) => console.log(error));
-    },
-    consLog() {
-      console.log(`App компонент загрузка i18n: ${this.messages}`);
-    }
-  }
+  components: { vmain, vabout, vcontact, vpartners }
 }
 </script>
 

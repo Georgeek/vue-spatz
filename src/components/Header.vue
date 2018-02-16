@@ -4,14 +4,8 @@
       nav.mobile-nav(:class="{down: isActive}")
         h1 Menu
         ul
-          li.mobile-nav__item
-            router-link(to="/") Главная
-          li.mobile-nav__item
-            router-link(to="/about")
-          li.mobile-nav__item
-            router-link(to="/partners")
-          li.mobile-nav__item
-            router-link(to="/contact") contact us
+          li.mobile-nav__item(v-for="message in messages")
+            router-link(:to="message.url") {{ message.name }}
       .menu(@click="toggleMenu" :class="{round: isRound}")
         a.trigger(href="#" :class="{round: isRound, close: !isHide}")
           svg(version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve")
@@ -44,11 +38,7 @@
       nav.site-nav
         ul
           li(v-for="message in messages")
-            router-link(to="message.url") {{ message.name }}
-          //- li
-          //-   router-link(to="/partners") {{ messages[1].name }}
-          //- li
-          //-   router-link(to="/contact") {{ messages[2].name }}
+            router-link(:to="message.url") {{ message.name }}
         .switch-button
           button.switch-button__case(:class="{active:selected == 'en'}" @click="requestNavbar('en')") en
           button.switch-button__case(:class="{active:selected == 'ru'}" @click="requestNavbar('ru')") ru
@@ -65,7 +55,11 @@ export default {
       isRound: false,
       isHide: true,
       url: 'http://spatz.web-y.ru/api/v1/',
-      messages: 'text'
+      messages: '',
+      props: {
+        messages: Object,
+        name: String
+      }
     }
   },
   created() {
