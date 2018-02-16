@@ -72,6 +72,7 @@ export default {
       this.isHide = !this.isHide
     },
     requestNavbar(lang) {
+
       this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/menu?lng=${lang}`, {
         method: 'GET',

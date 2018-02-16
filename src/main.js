@@ -9,6 +9,7 @@ import VueCarousel from 'vue-carousel'
 Vue.use(VueProgressiveImage)
 Vue.use(VueCarousel)
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
