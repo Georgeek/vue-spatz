@@ -5,7 +5,7 @@
               :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader></vheader>
+        <vheader @changeLang='requestData'></vheader>
 
         <div class="aside">
           <div class="aside__wrap">
@@ -23,7 +23,7 @@
           <!-- Title -->
           <div class="page-title">
             <div class="page-title__wrap">
-              <h1 class="title">This your slogan here</h1>
+              <h1 class="title">{{pageText.title}}</h1>
             </div>
           </div>
 
@@ -35,18 +35,18 @@
                 <h4 class="content__title">spatz</h4>
               </div>
               <div class="content__row">
-                <div class="content__left">
+                <div class="content__left textblock">
                   <transition-group name="textslide">
                     <div class="content__textblock  content--transition" v-if="docState === 'case'" key="case">
-                      <p class="description description__text">111111111111111 Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                      <div class="description description__text" v-html="pageText.text"></div>
                       <p class="description description__text"> 111111111111111Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
                     </div>
                     <div class="content__textblock  content--transition" v-if="docState === 'radar'" key="radar">
-                      <p class="description description__text">2222222222222222 Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                      <div class="description description__text" v-html="pageText.text"></div>
                       <p class="description description__text"> 2222222222222222Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
                     </div>
                     <div class="content__textblock  content--transition" v-if="docState === 'settings'" key="settings">
-                      <p class="description description__text">333333333333333 Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                      <div class="description description__text" v-html="pageText.text"></div>
                       <p class="description description__text"> 333333333333333Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
                     </div>
 
@@ -54,23 +54,7 @@
                 </div>
 
                 <div class="content__right">
-                  <div class="contact">
-                    <div class="contact__wrap">
-                      <div class="contact__info">
-                        <h6 class="contact__title">Contact info</h6>
-                        <ul>
-                          <li class="contact__item">Phone: +7-926-977-22-57</li>
-                          <li class="contact__item">+7-495-643-10-16 доб 15690</li>
-                          <li class="contact__item">Email: spatz.msk@gmail.com</li>
-                        </ul>
-                      </div>
-                      <div class="contact__address">
-                        <h6 class="contact__title">Corporate office</h6>
-                        <p class="contact__item">119180, г.Москва, ул. Малая Полянка, д.2</p>
-                      </div>
-                    </div>
-                  </div>
-
+                  <contacts></contacts>
                 </div>
               </div>
             </div>
@@ -87,32 +71,44 @@
 <script>
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
+import contacts from '@/components/contacts'
 export default {
   name: 'vabout',
-  components: {vheader, vfooter},
+  components: {vheader, vfooter, contacts},
   data() {
     return {
-      docState: 'case'
+      docState: 'case',
+      pageText: {},
+      selected: 'ru'
     }
+  },
+  created() {
+    this.requestData(this.selected);
   },
   methods: {
     showText(key) {
       this.docState = key;
+    },
+    requestData(lang) {
+      this.selected = lang;
+      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=about-us&lng=${lang}`, {
+        method: 'GET',
+        body: null,
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then((res) => res.json())
+        .then((resText) => {
+          this.pageText = resText;
+        })
+        .catch((error) => console.log(error));
     }
   }
+
 }
 </script>
 
 <style lang="sass">
-.bg
-  &--second
-    background: #0d2c4a
-    background-image: url(../assets/img/bgpage2.png)
-    background: linear-gradient(0, rgba(13, 44, 74, .99) 30%, rgba(255, 255,255, 0)), url('../assets/img/bgpage2-20.png')
-    background-repeat: no-repeat
-    background-position: center
-    background-size: cover
-
 .aside
   position: absolute
   top: 33%
@@ -142,6 +138,10 @@ export default {
     img
       width: 50px
       height: 50px
+
+.textblock
+  @media (max-width: 800px), (max-height: 640px)
+    height: 210px
 
 .textslide-enter-active
   transition: all 1.8s ease

@@ -5,14 +5,14 @@
               :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader></vheader>
+        <vheader @changeLang='requestData'></vheader>
 
         <div class="page-content">
 
           <!-- Title -->
           <div class="page-title">
             <div class="page-title__wrap">
-              <h1 class="title">This your slogan here</h1>
+              <h1 class="title">{{pageText.title}}</h1>
             </div>
           </div>
 
@@ -20,15 +20,20 @@
           <div class="content">
             <div class="content__wrap">
               <div class="content__row">
-                <p class="description description__text">Quis debitis ex autem excepturi, magnam soluta architecto unde libero minima consectetur.</p>
+                <p class="description description__text">{{pageText.text}}</p>
               </div>
 
               <div class="content__row">
                 <div class="content__left content__carousel">
                   <!-- Form -->
                   <div>
-                    <carousel paginationActiveColor="#0086BC" :perPage=4 :perPageCustom="[[480, 3],[640, 4]]">
-                      <slide>
+                    <carousel
+                      :paginationEnabled=false
+                      :navigationEnabled=true
+                      :navigationClickTargetSize='12'
+                      :perPage='4'
+                      :perPageCustom="[[480, 3],[640, 8]]">
+                      <slide v-for="(slide, key) in partners" :key="key" v-if="slide % 2 != 0">
                         <div class="carousel__slide">
                           <div class="carousel__row">
                             <div class="carousel__item card">
@@ -37,197 +42,20 @@
                               </div>
                               <div class="card__title">
                                 <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-
-
-                      </slide>
-                      <slide>
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
+                                {{ slide.name }}
                               </div>
                             </div>
 
                           </div>
                         </div>
                       </slide>
-                      <slide>
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
 
-
-                          </div>
-                        </div>
-                      </slide>
-                      <slide>
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </slide>
-                      <slide>
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </slide>
-                      <slide>
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </slide>
-                      <slide>
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                Misumi Europe
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </slide>
                     </carousel>
                   </div>
 
                 </div>
                 <div class="content__right">
-                  <div class="contact">
-                    <div class="contact__wrap">
-                      <div class="contact__info">
-                        <h6 class="contact__title">Contact info</h6>
-                        <ul>
-                          <li class="contact__item">Phone: +7-926-977-22-57</li>
-                          <li class="contact__item">+7-495-643-10-16 доб 15690</li>
-                          <li class="contact__item">Email: spatz.msk@gmail.com</li>
-                        </ul>
-                      </div>
-                      <div class="contact__address">
-                        <h6 class="contact__title">Corporate office</h6>
-                        <p class="contact__item">119180, г.Москва, ул. Малая Полянка, д.2</p>
-                      </div>
-                    </div>
-                  </div>
+                  <contacts></contacts>
                 </div>
 
               </div>
@@ -246,18 +74,87 @@
 <script>
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
+import contacts from '@/components/contacts'
 import { Carousel, Slide } from 'vue-carousel'
 export default {
   name: 'vpartners',
-  components: {vheader, vfooter, Carousel, Slide}
+  components: {vheader, vfooter, contacts,  Carousel, Slide},
+  data() {
+    return {
+      pageText: {},
+      partners: {},
+      selected: 'ru',
+      counter: 0,
+      paginationEnabled: false,
+      props: {
+        paginationEnabled: Boolean
+      }
+    }
+  },
+  created() {
+    this.requestData(this.selected);
+    this.requestPartners();
+  },
+  methods: {
+    requestData(lang) {
+      this.selected = lang;
+      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=partners&lng=${lang}`, {
+        method: 'GET',
+        body: null,
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then((res) => res.json())
+        .then((resText) => {
+          this.pageText = resText;
+        })
+        .catch((error) => console.log(error));
+    },
+    requestPartners() {
+      return fetch(`http://spatz.web-y.ru/api/v1/partners`, {
+        method: 'GET',
+        body: null,
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then((res) => res.json())
+        .then((resText) => {
+          this.partners = resText;
+        })
+        .catch((error) => console.log(error));
+    }
+  }
 }
 </script>
 
 <style lang="sass">
-.VueCarousel-dot--active .VueCarousel-dot-inner
-  background: #0086BC
+.VueCarousel
+  @media (max-width: 639px)
+    margin: 0 20px
+
+.VueCarousel-pegination
+  display: none
+
+.VueCarousel-inner
+  flex-direction: column !important
+  flex-wrap: wrap
+  height: 230px
+
+  @media (max-width: 639px)
+    flex-direction: row !important
+    flex-wrap: nowrap
+    height: auto
+
+.VueCarousel-slide
+  height: 100%
+  max-height: 110px
+  // width: 180px
+
+.VueCarousel-navigation-button
+  color: rgb(239, 239, 239) !important
 
 .carousel
+  max-width: 500px
   &__row
     display: flex
     flex-wrap: wrap

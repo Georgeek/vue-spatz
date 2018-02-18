@@ -72,9 +72,10 @@ export default {
       this.isHide = !this.isHide
     },
     requestNavbar(lang) {
-
+      this.$emit('changeLang', lang);
+      console.log(lang)
       this.selected = lang;
-      return fetch(`http://spatz.web-y.ru/api/v1/menu?lng=${lang}`, {
+      return fetch(`http://spatz.web-y.ru/api/v1/menu?group=1&lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({

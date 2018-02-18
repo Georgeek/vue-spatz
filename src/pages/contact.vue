@@ -5,14 +5,14 @@
               :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader></vheader>
+        <vheader @changeLang='requestData'></vheader>
 
         <div class="page-content">
 
           <!-- Title -->
           <div class="page-title">
             <div class="page-title__wrap">
-              <h1 class="title">Get in touch with us</h1>
+              <h1 class="title">{{pageText.title}}</h1>
             </div>
           </div>
 
@@ -20,7 +20,7 @@
           <div class="content">
             <div class="content__wrap">
               <div class="content__row">
-                <p class="description description__text">For any further information about Spatz, please fill out the form below. One of our representatives will contact you shortly.</p>
+                <p class="description description__text">{{pageText.text}}</p>
               </div>
 
               <div class="content__row content--reverse">
@@ -29,13 +29,13 @@
                     <div class="google-keep__block">
                       <form action="" method="get" id="feedbackform">
                         <div class="google-keep__input-cont">
-                          <input aria-label="name" autocomplete="off" placeholder="name" type="text" class="google-keep__input">
+                          <input aria-label="name" autocomplete="off" :placeholder="pageForm.name" type="text" class="google-keep__input">
                         </div>
                         <div class="google-keep__input-cont">
-                          <input aria-label="email address" autocomplete="off" placeholder="email address" type="text" class="google-keep__input">
+                          <input aria-label="email address" autocomplete="off" :placeholder="pageForm['email address']" type="text" class="google-keep__input">
                         </div>
                         <div class="google-keep__input-cont">
-                          <textarea aria-label="message" autocomplete="off" placeholder="message" type="text" class="google-keep__input" ></textarea>
+                          <textarea aria-label="message" autocomplete="off" :placeholder="pageForm.message" type="text" class="google-keep__input" ></textarea>
                         </div>
                         <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
                       </form>
@@ -44,27 +44,12 @@
                   </div>
                 </div>
                 <div class="content__right">
-                  <div class="contact">
-                    <div class="contact__wrap">
-                      <div class="contact__info">
-                        <h6 class="contact__title">Contact info</h6>
-                        <ul>
-                          <li class="contact__item">Phone: +7-926-977-22-57</li>
-                          <li class="contact__item">+7-495-643-10-16 доб 15690</li>
-                          <li class="contact__item">Email: spatz.msk@gmail.com</li>
-                        </ul>
-                      </div>
-                      <div class="contact__address">
-                        <h6 class="contact__title">Corporate office</h6>
-                        <p class="contact__item">119180, г.Москва, ул. Малая Полянка, д.2</p>
-                      </div>
-                    </div>
-                  </div>
+                  <contacts :selected='selected'></contacts>
                 </div>
 
               </div>
               <div class="content__row">
-                <input class="form__submit-btn" type="submit" form="feedbackform" value="Send">
+                <input class="form__submit-btn" type="submit" form="feedbackform" :value="pageForm.send">
                 <!-- <label class="form__submit-btn" for="submit-form" tabindex="0">send</label> -->
               </div>
 
@@ -82,21 +67,56 @@
 <script>
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
+import contacts from '@/components/contacts'
 export default {
   name: 'vcontact',
-  components: {vheader, vfooter}
+  components: {vheader, vfooter, contacts},
+    data() {
+    return {
+      docState: 'case',
+      pageText: {},
+      pageForm: {},
+      selected: 'ru'
+    }
+  },
+  created() {
+    this.requestData(this.selected);
+    this.requestForm(this.selected);
+  },
+  methods: {
+    requestData(lang) {
+      this.selected = lang;
+      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=contacts&lng=${lang}`, {
+        method: 'GET',
+        body: null,
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then((res) => res.json())
+        .then((resText) => {
+          this.pageText = resText;
+        })
+        .catch((error) => console.log(error));
+    },
+    requestForm(lang) {
+      this.selected = lang;
+      return fetch(`http://spatz.web-y.ru/api/v1/variable?lng=${lang}`, {
+        method: 'GET',
+        body: null,
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then((res) => res.json())
+        .then((resText) => {
+          this.pageForm = resText;
+        })
+        .catch((error) => console.log(error));
+    }
+  }
 }
 </script>
 
 <style lang="sass">
-.bg
-  &--fourth
-    background-color: #77bfa1
-    background: linear-gradient(0, rgba(13, 44, 74, .99) 30%, rgba(255, 255,255, 0)), url('../assets/img/bgpage4.png')
-    background-repeat: no-repeat
-    background-position: center
-    background-size: cover
-
 .google-keep
   display: flex
   justify-content: flex-end
@@ -146,11 +166,9 @@ export default {
   &__submit-btn
     margin-top: 20px
     padding: 13px 25px
-    max-width: 100px
+    // max-width: 100px
     color: #fff
     background: #0086bc
     border: none
     border-radius: 4px
-
-
 </style>
