@@ -24,7 +24,7 @@
                   <p class="description description__text"> {{ pageText.text}} </p>
                 </div>
                 <div class="content__right">
-                  <contacts></contacts>
+                  <contacts :selected="selected"></contacts>
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       pageText: {},
-      selected: 'ru'
+      selected: ''
     }
   },
   created() {
@@ -57,7 +57,6 @@ export default {
   },
   methods: {
     requestData(lang) {
-      console.log('click');
       this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=/&lng=${lang}`, {
         method: 'GET',

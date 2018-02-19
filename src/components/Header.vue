@@ -50,7 +50,6 @@ export default {
   name: 'vheader',
   data() {
     return {
-      selected: 'ru',
       isActive: false,
       isRound: false,
       isHide: true,
@@ -63,7 +62,7 @@ export default {
     }
   },
   created() {
-    this.requestNavbar(this.selected);
+    this.requestNavbar();
   },
   methods: {
     toggleMenu() {
@@ -72,9 +71,8 @@ export default {
       this.isHide = !this.isHide
     },
     requestNavbar(lang) {
-      this.$emit('changeLang', lang);
-      console.log(lang)
       this.selected = lang;
+      this.$emit('changeLang', lang);
       return fetch(`http://spatz.web-y.ru/api/v1/menu?group=1&lng=${lang}`, {
         method: 'GET',
         body: null,

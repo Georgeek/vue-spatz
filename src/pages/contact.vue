@@ -5,7 +5,7 @@
               :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader @changeLang='requestData'></vheader>
+        <vheader @changeLang='updatePage'></vheader>
 
         <div class="page-content">
 
@@ -44,7 +44,7 @@
                   </div>
                 </div>
                 <div class="content__right">
-                  <contacts :selected='selected'></contacts>
+                  <contacts :selected="selected"></contacts>
                 </div>
 
               </div>
@@ -71,17 +71,16 @@ import contacts from '@/components/contacts'
 export default {
   name: 'vcontact',
   components: {vheader, vfooter, contacts},
-    data() {
+  data() {
     return {
+      selected: '',
       docState: 'case',
       pageText: {},
-      pageForm: {},
-      selected: 'ru'
+      pageForm: {}
     }
   },
   created() {
-    this.requestData(this.selected);
-    this.requestForm(this.selected);
+    this.requestForm();
   },
   methods: {
     requestData(lang) {
@@ -99,7 +98,6 @@ export default {
         .catch((error) => console.log(error));
     },
     requestForm(lang) {
-      this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/variable?lng=${lang}`, {
         method: 'GET',
         body: null,
@@ -111,6 +109,10 @@ export default {
           this.pageForm = resText;
         })
         .catch((error) => console.log(error));
+    },
+    updatePage(lang) {
+      this.requestData(lang);
+      this.requestForm(lang);
     }
   }
 }

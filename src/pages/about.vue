@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="content__right">
-                  <contacts></contacts>
+                  <contacts :selected="selected"></contacts>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default {
     return {
       docState: 'case',
       pageText: {},
-      selected: 'ru'
+      selected: ''
     }
   },
   created() {

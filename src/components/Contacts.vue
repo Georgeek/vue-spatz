@@ -2,6 +2,7 @@
   .contact
     .contact__wrap
       .contact__info
+        h1 {{ selected }}
         h6.contact__title {{pageText['Contact Info']}}
         ul
           li.contact__item {{pageText['Phone']}}: {{pageText['_phone']}}
@@ -16,13 +17,21 @@ export default {
   name: 'contacts',
   data() {
     return {
-      pageText: {},
-      selected: 'ru'
+      pageText: {}
     }
   },
-  props: ['selected'],
+  props: {
+    selected: {
+      default: 'en'
+    }
+  },
   created() {
     this.requestData(this.selected);
+  },
+  watch: {
+    selected: function() {
+      this.requestData(this.selected)
+    }
   },
   methods: {
     requestData(lang) {

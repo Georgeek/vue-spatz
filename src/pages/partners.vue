@@ -55,7 +55,7 @@
 
                 </div>
                 <div class="content__right">
-                  <contacts></contacts>
+                  <contacts :selected="selected"></contacts>
                 </div>
 
               </div>
@@ -83,7 +83,7 @@ export default {
     return {
       pageText: {},
       partners: {},
-      selected: 'ru',
+      selected: '',
       counter: 0,
       paginationEnabled: false,
       props: {
