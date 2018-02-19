@@ -2,7 +2,6 @@
   .contact
     .contact__wrap
       .contact__info
-        h1 {{ selected }}
         h6.contact__title {{pageText['Contact Info']}}
         ul
           li.contact__item {{pageText['Phone']}}: {{pageText['_phone']}}
