@@ -72,7 +72,6 @@ export default {
       this.isHide = !this.isHide
     },
     requestNavbar(lang) {
-      // this.$emit('changeLang', lang);
       if (lang === undefined) {
         lang = 'en'
       }
@@ -119,17 +118,13 @@ export default {
         display: none
 
   .menu
-    // position: fixed
     display: none
     z-index: 100
     top: 25px
     left: 25px
-    // width: 75px
-    // height: 75px
     box-sizing: content-box
     color: #fff
     text-align: center
-    // border: 3px solid #fff
     transition: all .5s ease
 
     @media (max-width: 760px)
@@ -141,7 +136,6 @@ export default {
       height: 40px
       text-decoration: none
       font-family: 'Open Sans', sans-serif;
-      //  font-size: 48pt
       font-weight: bold
       color: #fff
       margin: 0 auto

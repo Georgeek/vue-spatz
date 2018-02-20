@@ -4,8 +4,10 @@
       .contact__info
         h6.contact__title {{pageText['Contact Info']}}
         ul
-          li.contact__item {{pageText['Phone']}}: {{pageText['_phone']}}
-          li.contact__item {{pageText['email address']}}: {{pageText['_email']}}
+          li.contact__item {{pageText['Phone']}}:
+            a.contact__link(:href="`tel:${pageText['_phone']}`")  {{pageText['_phone']}}
+          li.contact__item {{pageText['email address']}}:
+             a.contact__link(:href="`mailto:${pageText['_email']}`")  {{pageText['_email']}}
       .contact__address
         h6.contact__title {{pageText['Corporate offices']}}
         p.contact__item {{pageText['_addr']}}
@@ -17,11 +19,7 @@ export default {
   data() {
     return {
       pageText: {},
-      selected: ''
     }
-  },
-  created() {
-    this.requestData(this.$store.state.language);
   },
   watch: {
     language(){
@@ -75,4 +73,8 @@ export default {
   &__title
     margin: 0 0 12px 0
     font-weight: bold
+  &__link
+    text-transform: lowercase
+    &:focus, &:active, &:hover
+      color: inherit
 </style>

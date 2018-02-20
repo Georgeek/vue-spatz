@@ -31,14 +31,14 @@
                       :paginationEnabled=false
                       :navigationEnabled=true
                       :navigationClickTargetSize='8'
-                      :perPage='4'
-                      :perPageCustom="[[480, 3],[640, 8]]">
+
+                      :perPageCustom="[[480, 3],[640, 5]]">
                       <slide v-for="(slide, key) in partners" :key="key" v-if="slide % 2 != 0">
                         <div class="carousel__slide">
                           <div class="carousel__row">
                             <div class="carousel__item card">
                               <div class="card__image">
-                                <img src="../assets/img/card-img1.jpg" alt="" srcset="">
+                                <img :src="slide.path" alt="" srcset="">
                               </div>
                               <div class="card__title">
                                 <hr>
@@ -55,7 +55,7 @@
 
                 </div>
                 <div class="content__right">
-                  <contacts :selected="selected"></contacts>
+                  <contacts></contacts>
                 </div>
 
               </div>
@@ -83,8 +83,6 @@ export default {
     return {
       pageText: {},
       partners: {},
-      selected: '',
-      counter: 0,
       paginationEnabled: false,
       props: {
         paginationEnabled: Boolean
@@ -92,7 +90,6 @@ export default {
     }
   },
   created() {
-    this.requestData(this.selected);
     this.requestPartners();
   },
   watch: {
@@ -107,7 +104,6 @@ export default {
   },
   methods: {
     requestData(lang) {
-      this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=partners&lng=${lang}`, {
         method: 'GET',
         body: null,

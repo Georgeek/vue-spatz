@@ -52,9 +52,6 @@ export default {
       pageText: {},
     }
   },
-  // created() {
-  //   this.requestData(this.$store.state.language);
-  // },
   watch: {
     language(){
       // do something

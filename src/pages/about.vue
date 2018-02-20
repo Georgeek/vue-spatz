@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="content__right">
-                  <contacts :selected="selected"></contacts>
+                  <contacts></contacts>
                 </div>
               </div>
             </div>
@@ -78,8 +78,7 @@ export default {
   data() {
     return {
       docState: 'case',
-      pageText: {},
-      selected: ''
+      pageText: {}
     }
   },
   watch: {
@@ -97,7 +96,6 @@ export default {
       this.docState = key;
     },
     requestData(lang) {
-      this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=about-us&lng=${lang}`, {
         method: 'GET',
         body: null,

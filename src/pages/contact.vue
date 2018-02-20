@@ -44,7 +44,7 @@
                   </div>
                 </div>
                 <div class="content__right">
-                  <contacts :selected="selected"></contacts>
+                  <contacts></contacts>
                 </div>
 
               </div>
@@ -73,14 +73,10 @@ export default {
   components: {vheader, vfooter, contacts},
   data() {
     return {
-      selected: '',
       docState: 'case',
       pageText: {},
       pageForm: {}
     }
-  },
-  created() {
-    this.requestForm();
   },
   watch: {
     language(){
@@ -89,13 +85,11 @@ export default {
   },
   computed: {
     language() {
-      this.requestData(this.$store.state.language)
-      this.requestForm(this.$store.state.language)
+      this.updatePage(this.$store.state.language)
     }
   },
   methods: {
     requestData(lang) {
-      this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=contacts&lng=${lang}`, {
         method: 'GET',
         body: null,
