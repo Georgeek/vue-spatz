@@ -38,7 +38,7 @@
       nav.site-nav
         ul
           li(v-for="message in messages")
-            router-link(:to="message.url") {{ message.name }}
+            router-link(:to.prevent="message.url") {{ message.name }}
         .switch-button
           button.switch-button__case(:class="{active:selected == 'en'}" @click="requestNavbar('en')") en
           button.switch-button__case(:class="{active:selected == 'ru'}" @click="requestNavbar('ru')") ru
