@@ -5,7 +5,8 @@
             :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader @changeLang='requestData'></vheader>
+        <!-- <vheader @changeLang='requestData'></vheader> -->
+        <vheader></vheader>
 
         <div class="page-content">
 
@@ -24,7 +25,7 @@
                   <p class="description description__text"> {{ pageText.text}} </p>
                 </div>
                 <div class="content__right">
-                  <contacts :selected="selected"></contacts>
+                  <contacts></contacts>
                 </div>
               </div>
             </div>
@@ -49,15 +50,23 @@ export default {
   data() {
     return {
       pageText: {},
-      selected: ''
     }
   },
-  created() {
-    this.requestData(this.selected);
+  // created() {
+  //   this.requestData(this.$store.state.language);
+  // },
+  watch: {
+    language(){
+      // do something
+    }
+  },
+  computed: {
+    language() {
+      this.requestData(this.$store.state.language)
+    }
   },
   methods: {
     requestData(lang) {
-      this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=/&lng=${lang}`, {
         method: 'GET',
         body: null,

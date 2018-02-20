@@ -16,25 +16,25 @@ export default {
   name: 'contacts',
   data() {
     return {
-      pageText: {}
-    }
-  },
-  props: {
-    selected: {
-      default: 'en'
+      pageText: {},
+      selected: ''
     }
   },
   created() {
-    this.requestData(this.selected);
+    this.requestData(this.$store.state.language);
   },
   watch: {
-    selected: function() {
-      this.requestData(this.selected)
+    language(){
+      // do something
+    }
+  },
+  computed: {
+    language() {
+      return this.requestData(this.$store.state.language);
     }
   },
   methods: {
     requestData(lang) {
-      this.selected = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/variable?lng=${lang}`, {
         method: 'GET',
         body: null,

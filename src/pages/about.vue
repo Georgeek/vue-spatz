@@ -5,7 +5,7 @@
               :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader @changeLang='requestData'></vheader>
+        <vheader></vheader>
 
         <div class="aside">
           <div class="aside__wrap">
@@ -82,8 +82,15 @@ export default {
       selected: ''
     }
   },
-  created() {
-    this.requestData(this.selected);
+  watch: {
+    language(){
+      // do something
+    }
+  },
+  computed: {
+    language() {
+      this.requestData(this.$store.state.language)
+    }
   },
   methods: {
     showText(key) {

@@ -55,6 +55,7 @@ export default {
       isHide: true,
       url: 'http://spatz.web-y.ru/api/v1/',
       messages: '',
+      selected: this.$store.state.language,
       props: {
         messages: Object,
         name: String
@@ -71,8 +72,11 @@ export default {
       this.isHide = !this.isHide
     },
     requestNavbar(lang) {
-      this.selected = lang;
-      this.$emit('changeLang', lang);
+      // this.$emit('changeLang', lang);
+      if (lang === undefined) {
+        lang = 'en'
+      }
+      this.selected = this.$store.state.language = lang;
       return fetch(`http://spatz.web-y.ru/api/v1/menu?group=1&lng=${lang}`, {
         method: 'GET',
         body: null,

@@ -5,7 +5,7 @@
               :blur="30">
     <div class="bg">
       <div class="container">
-        <vheader @changeLang='requestData'></vheader>
+        <vheader></vheader>
 
         <div class="page-content">
 
@@ -94,6 +94,16 @@ export default {
   created() {
     this.requestData(this.selected);
     this.requestPartners();
+  },
+  watch: {
+    language(){
+      // do something
+    }
+  },
+  computed: {
+    language() {
+      this.requestData(this.$store.state.language)
+    }
   },
   methods: {
     requestData(lang) {
