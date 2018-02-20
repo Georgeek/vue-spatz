@@ -30,7 +30,7 @@
                     <carousel
                       :paginationEnabled=false
                       :navigationEnabled=true
-                      :navigationClickTargetSize='12'
+                      :navigationClickTargetSize='8'
                       :perPage='4'
                       :perPageCustom="[[480, 3],[640, 8]]">
                       <slide v-for="(slide, key) in partners" :key="key" v-if="slide % 2 != 0">
@@ -130,7 +130,7 @@ export default {
 <style lang="sass">
 .VueCarousel
   @media (max-width: 639px)
-    margin: 0 20px
+    margin: 0 20px 0 -5px
 
 .VueCarousel-pegination
   display: none
@@ -148,7 +148,6 @@ export default {
 .VueCarousel-slide
   height: 100%
   max-height: 110px
-  // width: 180px
 
 .VueCarousel-navigation-button
   color: rgb(239, 239, 239) !important
@@ -176,5 +175,4 @@ export default {
     width: 33%
     border: 1px solid #0086BC
     margin-bottom: 7px
-
 </style>

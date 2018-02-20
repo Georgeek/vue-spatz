@@ -25,17 +25,17 @@
 
               <div class="content__row content--reverse">
                 <div class="content__form">
-                  <div class="google-keep google-keep-bg">
-                    <div class="google-keep__block">
+                  <div class="form form-bg">
+                    <div class="form__block">
                       <form action="" method="get" id="feedbackform">
-                        <div class="google-keep__input-cont">
-                          <input aria-label="name" autocomplete="off" :placeholder="pageForm.name" type="text" class="google-keep__input">
+                        <div class="form__input-cont">
+                          <input aria-label="name" autocomplete="off" :placeholder="pageForm.name" type="text" class="form__input">
                         </div>
-                        <div class="google-keep__input-cont">
-                          <input aria-label="email address" autocomplete="off" :placeholder="pageForm['email address']" type="text" class="google-keep__input">
+                        <div class="form__input-cont">
+                          <input aria-label="email address" autocomplete="off" :placeholder="pageForm['email address']" type="text" class="form__input">
                         </div>
-                        <div class="google-keep__input-cont">
-                          <textarea aria-label="message" autocomplete="off" :placeholder="pageForm.message" type="text" class="google-keep__input" ></textarea>
+                        <div class="form__input-cont">
+                          <textarea aria-label="message" autocomplete="off" :placeholder="pageForm.message" type="text" class="form__input" ></textarea>
                         </div>
                         <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
                       </form>
@@ -119,7 +119,7 @@ export default {
 </script>
 
 <style lang="sass">
-.google-keep
+.form
   display: flex
   justify-content: flex-end
   align-items: center
@@ -138,6 +138,16 @@ export default {
       margin-left: 0
       max-width: 720px
 
+  &__submit-btn
+    margin: 20px 0
+    padding: 13px 25px
+    color: #fff
+    background: #0086bc
+    border: none
+    border-radius: 4px
+    @media (max-width: 800px), (max-height: 640px)
+      margin: 20px auto
+
   &__input-cont
     margin-right: 50px
     margin-top: 20px
@@ -147,6 +157,8 @@ export default {
     border: 1px solid rgba(0, 0, 0, 0)
     border-radius: 4px
     transition: background 100ms ease, width 100ms ease
+    @media (max-width: 800px), (max-height: 640px)
+      margin-right: auto
 
     input, textarea
       padding: 13px 25px
@@ -164,13 +176,4 @@ export default {
 
       &::placeholder
         color: rgba(0, 0, 0, .8)
-.form
-  &__submit-btn
-    margin-top: 20px
-    padding: 13px 25px
-    // max-width: 100px
-    color: #fff
-    background: #0086bc
-    border: none
-    border-radius: 4px
 </style>
