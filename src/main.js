@@ -6,9 +6,11 @@ import router from './router'
 import VueProgressiveImage from 'vue-progressive-image'
 import VueCarousel from 'vue-carousel'
 import { store } from './store/store'
+import Cookies from 'js-cookie'
 
 Vue.use(VueProgressiveImage)
 Vue.use(VueCarousel)
+Vue.use(Cookies)
 
 
 /* eslint-disable no-new */

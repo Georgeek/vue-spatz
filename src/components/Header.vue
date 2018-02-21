@@ -46,6 +46,7 @@
 
 <script>
 import Vue from 'vue'
+import Cookies from 'js-cookie'
 export default {
   name: 'vheader',
   data() {
@@ -63,7 +64,7 @@ export default {
     }
   },
   created() {
-    this.requestNavbar();
+    this.requestNavbar(Cookies.get('lang'));
   },
   methods: {
     toggleMenu() {
@@ -75,7 +76,8 @@ export default {
       if (lang === undefined) {
         lang = 'en'
       }
-      this.selected = this.$store.state.language = lang;
+      Cookies.set('lang', lang);
+      this.selected = this.$store.state.language = Cookies.get('lang');
       return fetch(`http://spatz.web-y.ru/api/v1/menu?group=1&lng=${lang}`, {
         method: 'GET',
         body: null,
