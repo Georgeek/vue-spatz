@@ -65,7 +65,11 @@
 </template>
 
 <script>
+import vheader from '@/components/header'
+import vfooter from '@/components/footer'
+import contacts from '@/components/contacts'
 export default {
+  components: { vheader, vfooter, contacts },
   name: 'vcontact',
   data() {
     return {
@@ -115,7 +119,24 @@ export default {
       this.requestData(lang);
       this.requestForm(lang);
     }
+  },
+  metaInfo() {
+    return {
+      title: this.pageText.seoTitle,
+      meta: [
+        { keywords: this.pageText.seoKeywords },
+        { description: this.pageText.seoDescription },
+        { property: 'og:site_name', content: 'SPATZ' },
+        { property: 'og:url', content: 'localhost' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: this.pageText.seoTitle },
+        { property: 'og:description', content: this.pageText.seoDescription },
+        { property: 'og:image', content: this.pageText.seoImage },
+        { property: 'og:image:type', content: 'image/jpeg' }
+      ]
+    }
   }
+
 }
 </script>
 

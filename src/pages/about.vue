@@ -23,7 +23,7 @@
           <!-- Title -->
           <div class="page-title">
             <div class="page-title__wrap">
-              <h1 class="title">{{pageText.title}}</h1>
+              <h1 class="title">{{pageText.title}} {{ pageText.seoKeywords}}</h1>
             </div>
           </div>
 
@@ -69,22 +69,25 @@
 </template>
 
 <script>
+import vheader from '@/components/header'
+import vfooter from '@/components/footer'
+import contacts from '@/components/contacts'
 export default {
+  components: { vheader, vfooter, contacts },
   name: 'vabout',
   data() {
     return {
       docState: 'case',
-      pageText: {}
+      pageText: {},
+      seoTitle: 'test11'
     }
+  },
+  created() {
+    this.requestData(this.$store.state.language)
   },
   watch: {
     language(){
       // do something
-    }
-  },
-  computed: {
-    language() {
-      this.requestData(this.$store.state.language)
     }
   },
   methods: {
@@ -101,10 +104,29 @@ export default {
       }).then((res) => res.json())
         .then((resText) => {
           this.pageText = resText;
+          this.seoTitle = 'SUCCESS'
+          console.log(this.seoTitle);
         })
         .catch((error) => console.log(error));
     }
+  },
+  metaInfo() {
+    return {
+      title: this.pageText.seoTitle,
+      meta: [
+        { keywords: this.pageText.seoKeywords },
+        { description: this.pageText.seoDescription },
+        { property: 'og:site_name', content: 'SPATZ' },
+        { property: 'og:url', content: 'localhost' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: this.pageText.seoTitle },
+        { property: 'og:description', content: this.pageText.seoDescription },
+        { property: 'og:image', content: this.pageText.seoImage },
+        { property: 'og:image:type', content: 'image/jpeg' }
+      ]
+    }
   }
+
 
 }
 </script>
