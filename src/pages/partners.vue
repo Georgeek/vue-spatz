@@ -72,13 +72,10 @@
 </template>
 
 <script>
-import vheader from '@/components/header'
-import vfooter from '@/components/footer'
-import contacts from '@/components/contacts'
 import { Carousel, Slide } from 'vue-carousel'
 export default {
   name: 'vpartners',
-  components: {vheader, vfooter, contacts,  Carousel, Slide},
+  components: {Carousel, Slide},
   data() {
     return {
       pageText: {},

@@ -41,13 +41,8 @@
 </template>
 
 <script>
-import vheader from '@/components/header'
-import vfooter from '@/components/footer'
-import contacts from '@/components/contacts'
-
 export default {
   name: 'vmain',
-  components: {vheader, vfooter, contacts},
   data() {
     return {
       pageText: {},

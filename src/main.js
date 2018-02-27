@@ -8,6 +8,14 @@ import VueCarousel from 'vue-carousel'
 import { store } from './store/store'
 import Cookies from 'js-cookie'
 
+// components
+import vheader from '@/components/header'
+import vfooter from '@/components/footer'
+import contacts from '@/components/contacts'
+Vue.component('vheader', vheader);
+Vue.component('vfooter', vfooter);
+Vue.component('contacts', contacts);
+
 Vue.use(VueProgressiveImage)
 Vue.use(VueCarousel)
 Vue.use(Cookies)
