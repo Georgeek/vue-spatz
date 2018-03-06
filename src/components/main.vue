@@ -5,7 +5,6 @@
             :blur="30">
     <div class="bg">
       <div class="container">
-        <!-- <vheader @changeLang='requestData'></vheader> -->
         <vheader></vheader>
 
         <div class="page-content">

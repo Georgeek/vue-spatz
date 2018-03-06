@@ -52,7 +52,7 @@
           <!-- Title -->
           <div class="page-title">
             <div class="page-title__wrap">
-              <h1 class="title">{{pageText.title}} {{ pageText.seoKeywords}}</h1>
+              <h1 class="title">{{pageText.title}}</h1>
             </div>
           </div>
 
@@ -60,25 +60,25 @@
           <!-- Content -->
           <div class="content">
             <div class="content__wrap">
-              <div class="content__row">
-                <h4 class="content__title">spatz</h4>
+              <div class="content__row" v-if="pageText.content">
+                <transition-group name="textslide">
+                  <h4 class="content__title content--transition" v-if="docState === 'case'" key="case">{{ pageText.content[0].title }}</h4>
+                  <h4 class="content__title content--transition" v-if="docState === 'radar'" key="radar">{{pageText.content[1].title}}</h4>
+                  <h4 class="content__title content--transition" v-if="docState === 'settings'" key="settings">{{pageText.content[2].title}}</h4>
+                </transition-group>
               </div>
               <div class="content__row">
-                <div class="content__left textblock">
+                <div class="content__left textblock" v-if="pageText.content">
                   <transition-group name="textslide">
                     <div class="content__textblock  content--transition" v-if="docState === 'case'" key="case">
-                      <div class="description description__text" v-html="pageText.text"></div>
-                      <p class="description description__text"> 111111111111111Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                      <div class="description description__text" v-html="pageText.content[0].text"></div>
                     </div>
                     <div class="content__textblock  content--transition" v-if="docState === 'radar'" key="radar">
-                      <div class="description description__text" v-html="pageText.text"></div>
-                      <p class="description description__text"> 2222222222222222Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                      <div class="description description__text" v-html="pageText.content[1].text"></div>
                     </div>
                     <div class="content__textblock  content--transition" v-if="docState === 'settings'" key="settings">
-                      <div class="description description__text" v-html="pageText.text"></div>
-                      <p class="description description__text"> 333333333333333Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam accusantium pariatur commodi eaque consectetur earum omnis. Sit, sint autem! Quod, mollitia numquam vero unde dolorum modi sapiente odit incidunt.</p>
+                      <div class="description description__text" v-html="pageText.content[2].text"></div>
                     </div>
-
                   </transition-group>
                 </div>
 
@@ -108,12 +108,16 @@ export default {
     return {
       docState: 'case',
       pageText: {},
-      seoTitle: 'test11'
+      content: [],
+      props: {
+        content: Object,
+        text: String
+      }
     }
   },
-  created() {
-    this.requestData(this.$store.state.language)
-  },
+  // created() {
+  //   this.requestData(this.$store.state.language)
+  // },
   watch: {
     language(){
       // do something
@@ -122,6 +126,10 @@ export default {
   computed: {
     language() {
       this.requestData(this.$store.state.language)
+    },
+    topicTitle() {
+      console.log(this.pageText.content[0].title)
+      return this.pageText.content[0].title
     }
   },
   methods: {
@@ -138,8 +146,7 @@ export default {
       }).then((res) => res.json())
         .then((resText) => {
           this.pageText = resText;
-          this.seoTitle = 'SUCCESS'
-          console.log(this.seoTitle);
+
         })
         .catch((error) => console.log(error));
     }
@@ -206,6 +213,7 @@ export default {
       height: 50px
 
 .textblock
+  margin-top: 20px
   @media (max-width: 800px), (max-height: 640px)
     height: 210px
 
