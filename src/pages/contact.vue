@@ -28,14 +28,37 @@
                   <div class="form form-bg">
                     <div class="form__block">
                       <form action="/api/v1/form/contacts" method="post" id="feedbackform">
+                        <div v-if="resFormData.status == 'ok'" v-html="resFormData.message" class="message message--success"></div>
+                        <div v-if="resFormData.status == 'error'" v-html="resFormData.message" class="message message--error"></div>
                         <div class="form__input-cont">
-                          <input name="name" required aria-label="name" autocomplete="off" :placeholder="pageForm.name" type="text" class="form__input">
+                          <input name="name"
+                                aria-label="name"
+                                v-model="formData.name"
+                                autocomplete="off"
+                                :placeholder="pageForm.name"
+                                type="text"
+                                class="form__input"
+                                required>
                         </div>
                         <div class="form__input-cont">
-                          <input name="email" required aria-label="email address" autocomplete="off" :placeholder="pageForm['email address']" type="email" class="form__input">
+                          <input name="email"
+                                type="email"
+                                aria-label="email address"
+                                v-model="formData.email"
+                                autocomplete="off"
+                                :placeholder="pageForm['email address']"
+                                class="form__input"
+                                required>
                         </div>
                         <div class="form__input-cont">
-                          <textarea name="message" required aria-label="message" autocomplete="off" :placeholder="pageForm.message" type="text" class="form__input" ></textarea>
+                          <textarea name="message"
+                                    aria-label="message"
+                                    v-model="formData.message"
+                                    autocomplete="off"
+                                    :placeholder="pageForm.message"
+                                    type="text"
+                                    required
+                                    class="form__input"></textarea>
                         </div>
                         <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
                       </form>
@@ -49,7 +72,7 @@
 
               </div>
               <div class="content__row">
-                <input class="form__submit-btn" type="submit" form="feedbackform" :value="pageForm.send">
+                <input class="form__submit-btn" type="submit" form="feedbackform" :value="pageForm.send" @click.prevent="postForm">
                 <!-- <label class="form__submit-btn" for="submit-form" tabindex="0">send</label> -->
               </div>
 
@@ -65,6 +88,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 import contacts from '@/components/contacts'
@@ -75,7 +99,13 @@ export default {
     return {
       docState: 'case',
       pageText: {},
-      pageForm: {}
+      pageForm: {},
+      formData: {
+        name: '',
+        email: '',
+        message: ''
+      },
+      resFormData: ''
     }
   },
   watch: {
@@ -118,6 +148,17 @@ export default {
     updatePage(lang) {
       this.requestData(lang);
       this.requestForm(lang);
+    },
+    postForm() {
+      let data = new FormData();
+      data.append('name', this.formData.name)
+      data.append('email', this.formData.email)
+      data.append('message', this.formData.message)
+      axios.post('http://spatz.web-y.ru/api/v1/form/contacts', data)
+      .then((res) => {
+        this.resFormData = res.data;
+      })
+      .catch((error) => console.log(error));
     }
   },
   metaInfo() {
@@ -141,6 +182,16 @@ export default {
 </script>
 
 <style lang="sass">
+.message
+  padding: 10px
+  margin-right: 50px
+  margin-bottom: 10px
+  border-radius: 4px
+  &--success
+    background: #6dc36d
+  &--error
+    background: #e26b6b
+
 .form
   display: flex
   justify-content: flex-end
