@@ -25,8 +25,32 @@
 
               <div class="content__row">
                 <div class="content__left content__carousel">
+                  <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide" v-for="(slide, key) in partners" :key="key">
+                        <div class="carousel__slide">
+                          <div class="carousel__row">
+                            <div class="carousel__item card">
+                              <div class="card__image">
+                                <img :src="slide.path" alt="" srcset="">
+                              </div>
+                              <div class="card__title">
+                                <hr>
+                                {{ slide.name }}
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div> -->
+                    <div class="swiper-pagination"></div>
+                  </div>
                   <!-- Form -->
-                  <div>
+                  <!-- <div>
                     <carousel
                       :paginationEnabled=false
                       :navigationEnabled=true
@@ -51,7 +75,7 @@
                       </slide>
 
                     </carousel>
-                  </div>
+                  </div> -->
 
                 </div>
                 <div class="content__right">
@@ -77,9 +101,14 @@ import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 import contacts from '@/components/contacts'
 
+import Swiper from 'swiper';
+
+let swiper = new Swiper('.swiper-container', {
+      slidesPerView: 3
+    });
 export default {
   name: 'vpartners',
-  components: { vheader, vfooter, contacts, Carousel, Slide},
+  components: { vheader, vfooter, contacts, Carousel, Slide, Swiper},
   data() {
     return {
       pageText: {},
@@ -152,6 +181,7 @@ export default {
 </script>
 
 <style lang="sass">
+@import '../../node_modules/swiper/dist/css/swiper.min.css'
 .VueCarousel
   @media (max-width: 639px)
     margin: 0 20px 0 -5px
