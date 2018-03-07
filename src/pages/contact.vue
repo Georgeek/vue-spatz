@@ -27,15 +27,15 @@
                 <div class="content__form">
                   <div class="form form-bg">
                     <div class="form__block">
-                      <form action="" method="get" id="feedbackform">
+                      <form action="/api/v1/form/contacts" method="post" id="feedbackform">
                         <div class="form__input-cont">
-                          <input aria-label="name" autocomplete="off" :placeholder="pageForm.name" type="text" class="form__input">
+                          <input name="name" required aria-label="name" autocomplete="off" :placeholder="pageForm.name" type="text" class="form__input">
                         </div>
                         <div class="form__input-cont">
-                          <input aria-label="email address" autocomplete="off" :placeholder="pageForm['email address']" type="text" class="form__input">
+                          <input name="email" required aria-label="email address" autocomplete="off" :placeholder="pageForm['email address']" type="email" class="form__input">
                         </div>
                         <div class="form__input-cont">
-                          <textarea aria-label="message" autocomplete="off" :placeholder="pageForm.message" type="text" class="form__input" ></textarea>
+                          <textarea name="message" required aria-label="message" autocomplete="off" :placeholder="pageForm.message" type="text" class="form__input" ></textarea>
                         </div>
                         <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
                       </form>
