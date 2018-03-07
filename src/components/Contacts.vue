@@ -5,7 +5,7 @@
         h6.contact__title {{pageText['Contact Info']}}
         ul
           li.contact__item {{pageText['Phone']}}:
-            a.contact__link(:href="`tel:${pageText['_phone']}`")  {{pageText['_phone']}}
+            a.contact__link(:href="`tel:${pageText['_phone clear']}`")  {{pageText['_phone']}}
           li.contact__item {{pageText['email address']}}:
              a.contact__link(:href="`mailto:${pageText['_email']}`")  {{pageText['_email']}}
       .contact__address

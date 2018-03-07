@@ -51,8 +51,13 @@
 
           <!-- Title -->
           <div class="page-title">
-            <div class="page-title__wrap">
-              <h1 class="title">{{pageText.title}}</h1>
+            <div class="page-title__wrap" v-if="pageText.content">
+              <transition-group name="textslide">
+                <h1 class="title">{{pageText.title}}</h1>
+                <h4 class="title content--transition" v-if="docState === 'case'" key="case">{{ pageText.content[0].title }}</h4>
+                <h4 class="title content--transition" v-if="docState === 'radar'" key="radar">{{pageText.content[1].title}}</h4>
+                <h4 class="title content--transition" v-if="docState === 'settings'" key="settings">{{pageText.content[2].title}}</h4>
+              </transition-group>
             </div>
           </div>
 
@@ -60,13 +65,6 @@
           <!-- Content -->
           <div class="content">
             <div class="content__wrap">
-              <div class="content__row" v-if="pageText.content">
-                <transition-group name="textslide">
-                  <h4 class="content__title content--transition" v-if="docState === 'case'" key="case">{{ pageText.content[0].title }}</h4>
-                  <h4 class="content__title content--transition" v-if="docState === 'radar'" key="radar">{{pageText.content[1].title}}</h4>
-                  <h4 class="content__title content--transition" v-if="docState === 'settings'" key="settings">{{pageText.content[2].title}}</h4>
-                </transition-group>
-              </div>
               <div class="content__row">
                 <div class="content__left textblock" v-if="pageText.content">
                   <transition-group name="textslide">
