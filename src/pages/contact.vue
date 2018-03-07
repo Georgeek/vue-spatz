@@ -191,6 +191,8 @@ export default {
     background: #6dc36d
   &--error
     background: #e26b6b
+  p
+    margin-top: 0
 
 .form
   display: flex
