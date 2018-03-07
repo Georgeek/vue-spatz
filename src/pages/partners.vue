@@ -25,9 +25,7 @@
 
               <div class="content__row">
                 <div class="content__left content__carousel">
-                  <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide" v-for="(slide, key) in partners" :key="key">
+                      <!-- <div class="swiper-slide" v-for="(slide, key) in partners" :key="key">
                         <div class="carousel__slide">
                           <div class="carousel__row">
                             <div class="carousel__item card">
@@ -42,13 +40,27 @@
 
                           </div>
                         </div>
-                      </div>
+                      </div> -->
 
-                    </div>
-                    <!-- <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div> -->
-                    <div class="swiper-pagination"></div>
-                  </div>
+                  <slick ref='slick' :options="slickOptions" >
+                    <!-- <div v-for="(slide, key) in partners" :key="key"> -->
+                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
+                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
+                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
+                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
+                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
+                        <!-- <div class="carousel__item card">
+                          <div class="card__image">
+                            <img :src="slide.path" alt="" srcset="">
+                          </div>
+                          <div class="card__title">
+                            <hr>
+                            {{ slide.name }}
+                          </div>
+                        </div>
+                    </div> -->
+                  </slick>
+
                   <!-- Form -->
                   <!-- <div>
                     <carousel
@@ -100,15 +112,13 @@ import { Carousel, Slide } from 'vue-carousel'
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 import contacts from '@/components/contacts'
+import $ from 'jquery';
+import slick from 'vue-slick'
 
-import Swiper from 'swiper';
 
-let swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3
-    });
 export default {
   name: 'vpartners',
-  components: { vheader, vfooter, contacts, Carousel, Slide, Swiper},
+  components: { vheader, vfooter, contacts, Carousel, Slide, slick},
   data() {
     return {
       pageText: {},
@@ -116,6 +126,10 @@ export default {
       paginationEnabled: false,
       props: {
         paginationEnabled: Boolean
+      },
+      slickOptions: {
+        slidesToShow: 2,
+        rows: 2
       }
     }
   },
@@ -181,7 +195,7 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../node_modules/swiper/dist/css/swiper.min.css'
+@import '../../node_modules/slick-carousel/slick/slick.css';
 .VueCarousel
   @media (max-width: 639px)
     margin: 0 20px 0 -5px
@@ -208,10 +222,10 @@ export default {
 
 .carousel
   max-width: 500px
-  &__row
-    display: flex
-    flex-wrap: wrap
-    max-width: 355px
+  // &__row
+  //   display: flex
+  //   flex-wrap: wrap
+  //   max-width: 355px
   &__item
     margin-right: 32px
     margin-bottom: 10px

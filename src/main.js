@@ -14,7 +14,6 @@ Vue.use(VueCarousel)
 Vue.use(Cookies)
 Vue.use(Meta)
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
