@@ -25,31 +25,10 @@
 
               <div class="content__row">
                 <div class="content__left content__carousel">
-                      <!-- <div class="swiper-slide" v-for="(slide, key) in partners" :key="key">
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img :src="slide.path" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                {{ slide.name }}
-                              </div>
-                            </div>
 
-                          </div>
-                        </div>
-                      </div> -->
-
-                  <slick ref='slick' :options="slickOptions" >
-                    <!-- <div v-for="(slide, key) in partners" :key="key"> -->
-                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
-                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
-                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
-                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
-                      <a href="http://placehold.it/200x100"><img src="http://placehold.it/200x100" alt=""></a>
-                        <!-- <div class="carousel__item card">
+                  <slick ref='slick' :options="slickOptions" v-if="partners">
+                    <div v-for="(slide, key) in partners" :key="key">
+                        <div class="carousel__item card">
                           <div class="card__image">
                             <img :src="slide.path" alt="" srcset="">
                           </div>
@@ -58,36 +37,8 @@
                             {{ slide.name }}
                           </div>
                         </div>
-                    </div> -->
+                    </div>
                   </slick>
-
-                  <!-- Form -->
-                  <!-- <div>
-                    <carousel
-                      :paginationEnabled=false
-                      :navigationEnabled=true
-                      :navigationClickTargetSize='8'
-
-                      :perPageCustom="[[480, 3],[640, 5]]">
-                      <slide v-for="(slide, key) in partners" :key="key" v-if="slide % 2 != 0">
-                        <div class="carousel__slide">
-                          <div class="carousel__row">
-                            <div class="carousel__item card">
-                              <div class="card__image">
-                                <img :src="slide.path" alt="" srcset="">
-                              </div>
-                              <div class="card__title">
-                                <hr>
-                                {{ slide.name }}
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </slide>
-
-                    </carousel>
-                  </div> -->
 
                 </div>
                 <div class="content__right">
@@ -112,7 +63,6 @@ import { Carousel, Slide } from 'vue-carousel'
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 import contacts from '@/components/contacts'
-import $ from 'jquery';
 import slick from 'vue-slick'
 
 
@@ -122,20 +72,30 @@ export default {
   data() {
     return {
       pageText: {},
-      partners: {},
+      partners: null,
       paginationEnabled: false,
       props: {
         paginationEnabled: Boolean
       },
       slickOptions: {
-        slidesToShow: 2,
-        rows: 2
+        slidesToShow: 4,
+        rows: 2,
+        dots: true,
+        arrows: false,
+        responsive: [
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 2
+            }
+          }
+        ]
       }
     }
   },
-  created() {
-    this.requestPartners();
-  },
+  // created() {
+  //   this.requestPartners();
+  // },
   watch: {
     language(){
       // do something
@@ -144,6 +104,7 @@ export default {
   computed: {
     language() {
       this.requestData(this.$store.state.language)
+      this.requestPartners();
     }
   },
   methods: {
@@ -195,7 +156,14 @@ export default {
 </script>
 
 <style lang="sass">
+@import '../../node_modules/slick-carousel/slick/slick-theme.css';
 @import '../../node_modules/slick-carousel/slick/slick.css';
+.slick-dots li button:before
+  color: white;
+
+.slick-dots li.slick-active button:before
+  color: #0086BC
+
 .VueCarousel
   @media (max-width: 639px)
     margin: 0 20px 0 -5px
