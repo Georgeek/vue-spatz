@@ -1,7 +1,7 @@
 <template>
   <progressive-background
-            src="http://spatz.web-y.ru/images/img1.jpg"
-            placeholder="http://spatz.web-y.ru/images/img1.jpg"
+            src="/images/img1.jpg"
+            placeholder="/images/img1.jpg"
             :blur="30">
     <div class="bg">
       <div class="container">
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=/&lng=${lang}`, {
+      return fetch(`/api/v1/page/get?url=/&lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({

@@ -1,7 +1,7 @@
 <template>
   <progressive-background
-              src="http://spatz.web-y.ru/images/img3.jpg"
-              placeholder="http://spatz.web-y.ru/images/img3.jpg"
+              src="/images/img3.jpg"
+              placeholder="/images/img3.jpg"
               :blur="30">
     <div class="bg">
       <div class="container">
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=partners&lng=${lang}`, {
+      return fetch(`/api/v1/page/get?url=partners&lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({
@@ -122,7 +122,7 @@ export default {
         .catch((error) => console.log(error));
     },
     requestPartners() {
-      return fetch(`http://spatz.web-y.ru/api/v1/partners`, {
+      return fetch(`/api/v1/partners`, {
         method: 'GET',
         body: null,
         headers: new Headers({
@@ -156,10 +156,10 @@ export default {
 </script>
 
 <style lang="sass">
-@import '../../node_modules/slick-carousel/slick/slick-theme.css';
-@import '../../node_modules/slick-carousel/slick/slick.css';
+@import '../../node_modules/slick-carousel/slick/slick-theme.css'
+@import '../../node_modules/slick-carousel/slick/slick.css'
 .slick-dots li button:before
-  color: white;
+  color: white
 
 .slick-dots li.slick-active button:before
   color: #0086BC

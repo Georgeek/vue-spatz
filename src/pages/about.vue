@@ -1,7 +1,7 @@
 <template>
   <progressive-background
-              src="http://spatz.web-y.ru/images/img2.jpg"
-              placeholder="http://spatz.web-y.ru/images/img2.jpg"
+              src="/images/img2.jpg"
+              placeholder="/images/img2.jpg"
               :blur="30">
     <div class="bg">
       <div class="container">
@@ -134,7 +134,7 @@ export default {
       this.docState = key;
     },
     requestData(lang) {
-      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=about-us&lng=${lang}`, {
+      return fetch(`/api/v1/page/get?url=about-us&lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({

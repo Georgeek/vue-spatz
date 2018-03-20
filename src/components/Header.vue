@@ -54,7 +54,7 @@ export default {
       isActive: false,
       isRound: false,
       isHide: true,
-      url: 'http://spatz.web-y.ru/api/v1/',
+      url: '/api/v1/',
       messages: '',
       selected: this.$store.state.language,
       props: {
@@ -78,7 +78,7 @@ export default {
       }
       Cookies.set('lang', lang);
       this.selected = this.$store.state.language = Cookies.get('lang');
-      return fetch(`http://spatz.web-y.ru/api/v1/menu?group=1&lng=${lang}`, {
+      return fetch(`/api/v1/menu?group=1&lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({

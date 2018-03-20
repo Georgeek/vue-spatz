@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`http://spatz.web-y.ru/api/v1/variable?lng=${lang}`, {
+      return fetch(`/api/v1/variable?lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({

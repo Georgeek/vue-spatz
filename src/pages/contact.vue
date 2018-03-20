@@ -1,7 +1,7 @@
 <template>
   <progressive-background
-              src="http://spatz.web-y.ru/images/img4.jpg"
-              placeholder="http://spatz.web-y.ru/images/img4.jpg"
+              src="/images/img4.jpg"
+              placeholder="/images/img4.jpg"
               :blur="30">
     <div class="bg">
       <div class="container">
@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`http://spatz.web-y.ru/api/v1/page/get?url=contacts&lng=${lang}`, {
+      return fetch(`/api/v1/page/get?url=contacts&lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({
@@ -133,7 +133,7 @@ export default {
         .catch((error) => console.log(error));
     },
     requestForm(lang) {
-      return fetch(`http://spatz.web-y.ru/api/v1/variable?lng=${lang}`, {
+      return fetch(`/api/v1/variable?lng=${lang}`, {
         method: 'GET',
         body: null,
         headers: new Headers({
@@ -154,7 +154,7 @@ export default {
       data.append('name', this.formData.name)
       data.append('email', this.formData.email)
       data.append('message', this.formData.message)
-      axios.post('http://spatz.web-y.ru/api/v1/form/contacts', data)
+      axios.post('/api/v1/form/contacts', data)
       .then((res) => {
         this.resFormData = res.data;
       })
