@@ -64,7 +64,7 @@ import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 import contacts from '@/components/contacts'
 import slick from 'vue-slick'
-
+import axios from 'axios'
 
 export default {
   name: 'vpartners',
@@ -93,9 +93,6 @@ export default {
       }
     }
   },
-  // created() {
-  //   this.requestPartners();
-  // },
   watch: {
     language(){
       // do something
@@ -109,29 +106,13 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`/api/v1/page/get?url=partners&lng=${lang}`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.pageText = resText;
-        })
+      axios.get(`/api/v1/page/get?url=partners&lng=${lang}`)
+        .then((resText) => this.pageText = resText)
         .catch((error) => console.log(error));
     },
     requestPartners() {
-      return fetch(`/api/v1/partners`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.partners = resText;
-        })
+      axios.get(`/api/v1/partners`)
+        .then((resText) => this.partners = resText)
         .catch((error) => console.log(error));
     }
   },
@@ -190,10 +171,6 @@ export default {
 
 .carousel
   max-width: 500px
-  // &__row
-  //   display: flex
-  //   flex-wrap: wrap
-  //   max-width: 355px
   &__item
     margin-right: 32px
     margin-bottom: 10px

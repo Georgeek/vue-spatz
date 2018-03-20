@@ -98,6 +98,7 @@
 import vheader from '@/components/header'
 import vfooter from '@/components/footer'
 import contacts from '@/components/contacts'
+import axios from 'axios'
 export default {
   components: { vheader, vfooter, contacts },
   name: 'vabout',
@@ -112,9 +113,6 @@ export default {
       }
     }
   },
-  // created() {
-  //   this.requestData(this.$store.state.language)
-  // },
   watch: {
     language(){
       // do something
@@ -134,17 +132,8 @@ export default {
       this.docState = key;
     },
     requestData(lang) {
-      return fetch(`/api/v1/page/get?url=about-us&lng=${lang}`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.pageText = resText;
-
-        })
+      axios.get(`/api/v1/page/get?url=about-us&lng=${lang}`)
+        .then((resText) => this.pageText = resText)
         .catch((error) => console.log(error));
     }
   },

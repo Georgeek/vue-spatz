@@ -60,7 +60,6 @@
                                     required
                                     class="form__input"></textarea>
                         </div>
-                        <!-- <input class="form__hidden" type="submit" id="submit-form"> -->
                       </form>
                     </div>
 
@@ -73,7 +72,6 @@
               </div>
               <div class="content__row">
                 <input class="form__submit-btn" type="submit" form="feedbackform" :value="pageForm.send" @click.prevent="postForm">
-                <!-- <label class="form__submit-btn" for="submit-form" tabindex="0">send</label> -->
               </div>
 
             </div>
@@ -120,29 +118,13 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`/api/v1/page/get?url=contacts&lng=${lang}`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.pageText = resText;
-        })
+      axios.get(`/api/v1/page/get?url=contacts&lng=${lang}`)
+        .then((resText) => this.pageText = resText)
         .catch((error) => console.log(error));
     },
     requestForm(lang) {
-      return fetch(`/api/v1/variable?lng=${lang}`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.pageForm = resText;
-        })
+      axios.get(`/api/v1/variable?lng=${lang}`)
+        .then((resText) => this.pageForm = resText)
         .catch((error) => console.log(error));
     },
     updatePage(lang) {
@@ -155,10 +137,10 @@ export default {
       data.append('email', this.formData.email)
       data.append('message', this.formData.message)
       axios.post('/api/v1/form/contacts', data)
-      .then((res) => {
-        this.resFormData = res.data;
-      })
-      .catch((error) => console.log(error));
+        .then((res) => {
+          this.resFormData = res.data;
+        })
+        .catch((error) => console.log(error));
     }
   },
   metaInfo() {

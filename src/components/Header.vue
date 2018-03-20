@@ -21,7 +21,7 @@
       .logo
         router-link(to="/")
           .logo__container
-            svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76.99 101.54")
+            svg(viewBox="0 0 76.99 101.54")
               //- defs
               title Logo
               path(class="spatz-logo" d="M68.78,84h-1.1v3.11H67V84h-1.1v-.65h2.93Z")
@@ -47,6 +47,8 @@
 <script>
 import Vue from 'vue'
 import Cookies from 'js-cookie'
+import axios from 'axios'
+
 export default {
   name: 'vheader',
   data() {
@@ -54,7 +56,6 @@ export default {
       isActive: false,
       isRound: false,
       isHide: true,
-      url: '/api/v1/',
       messages: '',
       selected: this.$store.state.language,
       props: {
@@ -78,16 +79,8 @@ export default {
       }
       Cookies.set('lang', lang);
       this.selected = this.$store.state.language = Cookies.get('lang');
-      return fetch(`/api/v1/menu?group=1&lng=${lang}`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.messages = resText;
-        })
+      axios.get(`/api/v1/menu?group=1&lng=${lang}`)
+        .then((resText) => this.messages = resText)
         .catch((error) => console.log(error));
     }
   }
@@ -110,7 +103,7 @@ export default {
 
   .site-nav
     li
-      display: inline-block;
+      display: inline-block
       margin-right: 64px
     .router-link-active
       color: #0086BC
@@ -137,7 +130,7 @@ export default {
       width: 40px
       height: 40px
       text-decoration: none
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Open Sans', sans-serif
       font-weight: bold
       color: #fff
       margin: 0 auto
@@ -175,7 +168,7 @@ export default {
       width: 60px
 
     .spatz-logo
-      fill: white;
+      fill: white
   nav
     display: flex
     justify-content: space-between
@@ -206,7 +199,6 @@ export default {
     top: 0
     transition: top .4s ease-in-out
 
-
   .switch-button
     &__case
       font-size: 17px
@@ -219,5 +211,4 @@ export default {
       &.active
         font-weight: bold
         border: none
-
 </style>

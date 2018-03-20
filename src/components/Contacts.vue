@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'contacts',
   data() {
@@ -33,16 +35,8 @@ export default {
   },
   methods: {
     requestData(lang) {
-      return fetch(`/api/v1/variable?lng=${lang}`, {
-        method: 'GET',
-        body: null,
-        headers: new Headers({
-          'Content-Type': 'application/json'
-        })
-      }).then((res) => res.json())
-        .then((resText) => {
-          this.pageText = resText;
-        })
+      axios.get(`/api/v1/variable?lng=${lang}`)
+        .then((resText) => this.pageText = resText)
         .catch((error) => console.log(error));
     }
   }
